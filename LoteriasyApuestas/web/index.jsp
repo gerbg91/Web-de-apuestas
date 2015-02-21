@@ -15,7 +15,7 @@
                 if (paginaprincipal != null){%>
                 <jsp:include page='<%=(String) request.getAttribute("paginaprincipal")%>' />
                 <%} else {%>
-                <jsp:include page='Principal.jsp' />
+                <jsp:include page='PrincipalEleccion.jsp' />
                 <%}%>     
             </div> 
             <div id="templatemo_footer">

@@ -1,8 +1,3 @@
-/*
-CSS Credit: http://www.templatemo.com
-*/
-
-/**/
 
 body {
     margin: 0;
@@ -19,35 +14,20 @@ a:active, a:hover { color: white; text-decoration: none; }
 
 p {
     margin: 0px;
-    padding: 0px;
+    padding: 20px;
 }
-
 
 .cleaner { clear: both; width: 100%; height: 0px; font-size: 0px;  }
 
 .margin_bottom_10 { clear: both; width: 100%; height: 10px; font-size: 1px;	}
 .margin_bottom_15 { clear: both; width: 100%; height: 15px; font-size: 1px;	}
 .margin_bottom_20 { clear: both; width: 100%; height: 20px; font-size: 1px;	}
-.margin_bottom_30 { clear: both; width: 100%; height: 30px; font-size: 1px;	}
-.margin_bottom_40 { clear: both; width: 100%; height: 10px; font-size: 1px;	}
-.margin_bottom_50 { clear: both; width: 100%; height: 50px; font-size: 1px;	}
-.margin_bottom_60 { clear: both; width: 100%; height: 60px; font-size: 1px;	}
-
-.margin_right_40 { margin-right: 20px; }
-.margin_right_60 { margin-right: 60px; }
-
-
-
-.fl { float: left; }
-.fr { float: right }
-
-
 
 #templatemo_container {
     width: 950px;
     margin: 0 auto;
     padding: 0 5px;
-    background-color: #F0F0F0;     
+    background-color: #f2f4f6;     
 }
 
 #templatemo_banner {
@@ -66,78 +46,89 @@ p {
     font-size: 30px;
 }
 
-.header_01 {
-    padding: 0 0 10px 0;
-    margin: 0 0 0 111px;
+.header {
+    background-color: #e5e6e7;
     font-size: 20px;
     font-weight: bold;
+    height: 35px;
+    margin: auto;
+    padding-top: 10px;
+    text-align: center;
+    color: #505050;
 }
 
-.header_02 {
-    padding: 0 0 10px 0;
-    margin: 0 0 10px 0;
-    font-size: 20px;
-    font-weight: bold;
-}
 
 #templatemo_content_top {
     clear: both;
     height: 510px;
-    padding-top: 50px;
-}
+    padding-top: 30px;
+    position: relative;
+    margin-left: 45px;
 
-.section_w335 {
-    color: white;
-    font-size: 20px;
-    margin-left: 300px;
 }
-
-.section_w336 {
-    color: white;
-    font-size: 20px;
-    margin-left: 300px;
-}
-
-.section_w335 .image_wrapper {
+/*Contenedores de los sorteos*/
+.contenedor_derecho{
     float: left;
-    width: 101px;
-    margin: 3px 20px 0 0;
+    width: 30%;
+    height: 40%;
+    background-color: white;
+    margin-right: 25px;
+    border: 1px solid;
+    border-color: #cbcbcd;
 }
 
-.image_wrapper img {
-    width: 95px;
-    height: 95px;
-    margin-left: 12px;
+.contenedor_central{
+    float: left;
+    width: 30%;
+    height: 40%;
+    background-color: white;
+    margin-right: 25px;
+    border: 1px solid;
+    border-color: #cbcbcd;
 }
 
-.image_global img{
-    width: 335px;
-    height: 245px;
-    border-radius: 14px;
+.contenedor_izquierdo{
+    float: left;
+    width: 30%;
+    height: 40%;
+    background-color: white;
+    margin-right: 25px;
+    border-color: #cbcbcd;
+    border: 1px solid;
+    border-color: #cbcbcd;
 }
 
-.section_w335 p {
+.footer_sorteo{
+    border: 1px solid #e5e6e7;
+    height: 45px;
+    margin-top: 23px;
+    padding-bottom: 10px;  
+}
+
+.container_global{
+    margin-left: 0px;
+}
+.rigth{
     float: right;
-    width: 210px;
-    text-align: justify;
-    margin-bottom: 10px;
+    margin-right: 20px;
 }
 
-#templatmeo_content_bottom {
-    clear: both;
-    padding: 40px 40px 0 200px;
-    /*Barra de abajo*/	
-    background-color: #B8C6C9;
+.rigth p{
+    padding: 0px;
+    margin: 0px;
 }
 
-.section_w210 {
-    width: 210px;
+.botonComprobar{
+    padding: 5px;    
 }
 
-.section_w210 p {
-    text-align: justify;
-    margin-bottom: 10px;
+/*slider*/
+.slider{
+    background: none repeat scroll 0 0 red;
+    height: 200px;
+    margin: 0 34px 30px 0;
 }
+
 /*Footer*/
 #templatemo_footer {
     text-align: center;
