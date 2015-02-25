@@ -15,8 +15,13 @@
         <div id="search_section">
             
             <form action="Controller?opID=ResultadoNavidad" method="POST">
-            Cantidad en dinero:<input type="number" name="numeroDado"/>€
+            Numero:<input type="number" name="numeroDado"/>
+            Cantidad en dinero:<input type="number" name="cantidadDinero"/>€
             <input type="submit" value="Comprobar" />
+            <select name="fecha">
+                    <option value="2014-12-21">21-12-2014</option>
+                    <option value="2013-12-21">21-12-2013</option>
+            </select> 
             </form>
         </div>
     </body>
