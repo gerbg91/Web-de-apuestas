@@ -11,7 +11,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 /**
  *
@@ -20,26 +19,30 @@ import java.util.ArrayList;
 public class Navidad_DAO {
 
     /**
-     * Metdo que recupera la lista de los numeros premiados
+     * Metdo que recupera el premio si ha resultado ganador
      *
      * @param con
      * @param fecha
-     * @return 
+     * @param numero
+     * @return
      * @throws Exception
      */
-    public ArrayList<Navidad> listadoNumeros(Connection con, Date fecha) throws Exception {
-        ArrayList<Navidad> _listaNumeros = new ArrayList();
+    @SuppressWarnings("null")
+    public float comprobarNumero(Connection con, Date fecha, int numero) throws Exception {
+
         ResultSet rs = null;
         PreparedStatement stmt = null;
         try {
-            stmt = con.prepareStatement("SELECT * FROM navidad where historico=?");
-            stmt.setDate(1,fecha);
+            stmt = con.prepareStatement("SELECT premios FROM navidad where numero=?");
+            //stmt.setDate(1,fecha);
+            stmt.setInt(1, numero);
             rs = stmt.executeQuery();
             Navidad _numeros = null;
             while (rs.next()) {
                 _numeros = new Navidad();
-                _listaNumeros.add(obtenNumeros(rs, _numeros));
+                _numeros.setPremios(rs.getFloat("premios"));
             }
+            return _numeros.getPremios();
         } catch (SQLException ex) {
             throw new Exception("Ha habido un problema al buscar los numeros en la BD " + ex.getMessage());
         } finally {
@@ -50,7 +53,6 @@ public class Navidad_DAO {
                 stmt.close();
             }
         }
-        return _listaNumeros;
     }
 
     /**

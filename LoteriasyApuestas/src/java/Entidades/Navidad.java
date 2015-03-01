@@ -16,7 +16,7 @@ public class Navidad {
 
     private int numero;
     private Date fecha;
-    private int premios;
+    private float premios;
 
     /**
      * @return the numero
@@ -49,14 +49,14 @@ public class Navidad {
     /**
      * @return the premios
      */
-    public int getPremios() {
+    public float getPremios() {
         return premios;
     }
 
     /**
      * @param premios the premios to set
      */
-    public void setPremios(int premios) {
+    public void setPremios(float premios) {
         this.premios = premios;
     }
 }

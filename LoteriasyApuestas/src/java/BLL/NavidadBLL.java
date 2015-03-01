@@ -7,10 +7,8 @@ package BLL;
 
 import DAO.Connection_DB;
 import DAO.Navidad_DAO;
-import Entidades.Navidad;
 import java.sql.Connection;
 import java.sql.Date;
-import java.util.ArrayList;
 
 /**
  *
@@ -19,27 +17,35 @@ import java.util.ArrayList;
 public class NavidadBLL {
 
     /**
-     * Metodo que verifica si te ha tocado el numero Dado que las papeletas no
+     * Metodo que verifica el premio que te ha tocado, en las papeletas no
      * son en numeros redondos(Ej: 4.5 euros), la cantidad apostada por el
      * usuario la transformo en centimos
      *
      * @param numero
      * @param cantidadDinero
      * @param fecha
+     * @return 
      */
-    public void comprobarNumeroBLL(int numero, float cantidadDinero, Date fecha) {
+    public float comprobarNumeroBLL(int numero, float cantidadDinero, Date fecha) {
 
         Connection _con = null;
-        ArrayList<Navidad> _listado = new ArrayList();
+        float premioFinalEuros=0;
         try {
             Connection_DB _conexion_DB = new Connection_DB();
             _con = _conexion_DB.AbrirConexion();
-            Navidad_DAO op = new Navidad_DAO();
-            _listado = op.listadoNumeros(_con,fecha);
+            Navidad_DAO _compruebaDAO = new Navidad_DAO();
+            float _resultado = _compruebaDAO.comprobarNumero(_con,fecha,numero);
             _conexion_DB.CerrarConexion(_con);
-            /*Ejecucion del algoritmo*/
+            if(_resultado!=0){
+                float _premioCentimos = _resultado*100;
+                float _cantidadDineroCentimos =  cantidadDinero*100;
+                /*Algoritmo*/
+                float premioFinal = (_premioCentimos*_cantidadDineroCentimos)/100;
+                premioFinalEuros = premioFinal/100;
+            }
         } catch (Exception ex) {
             System.out.println("Excepcion->" + ex.getMessage());
         }
+        return premioFinalEuros;
     }
 }

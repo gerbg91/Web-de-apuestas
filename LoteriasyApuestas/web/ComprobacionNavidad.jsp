@@ -16,7 +16,7 @@
             
             <form action="Controller?opID=ResultadoNavidad" method="POST">
             Numero:<input type="number" name="numeroDado"/>
-            Cantidad en dinero:<input type="number" name="cantidadDinero"/>€
+            Cantidad en dinero:<input type="number" name="cantidadDinero"  step="any"/>€
             <input type="submit" value="Comprobar" />
             <select name="fecha">
                     <option value="2014-12-21">21-12-2014</option>

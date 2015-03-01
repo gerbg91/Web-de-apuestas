@@ -13,5 +13,7 @@
     </head>
     <body>
         <h1>¡Has ganado!</h1> 
+        <% float _premio = (float)request.getAttribute("Premio"); %>
+        Te ha tocado: <%=_premio %>
     </body>
 </html>

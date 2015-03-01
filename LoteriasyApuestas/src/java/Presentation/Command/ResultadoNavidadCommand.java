@@ -26,14 +26,15 @@ public class ResultadoNavidadCommand extends ICommand {
          String _fecha;
         _fecha = request.getParameter("fecha");
         
-        SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+        //SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
         
          Date fecha1 =null;
          
-         fecha1 = (Date)formatoDeFecha.parse(_fecha);
+         //fecha1 = (Date)formatoDeFecha.parse(_fecha);
          
         NavidadBLL _navidadBLL=new NavidadBLL();
         _navidadBLL.comprobarNumeroBLL(_numero_navidad,_cantidad_jugada, fecha1);
+        request.setAttribute("Premio", _navidadBLL.comprobarNumeroBLL(_numero_navidad,_cantidad_jugada, fecha1));
         return "/Resultado.jsp";
     }
 }
