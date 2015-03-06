@@ -14,21 +14,21 @@ import java.sql.Date;
  */
 public class Navidad {
 
-    private int numero;
+    private String numero;
     private Date fecha;
     private float premios;
 
     /**
      * @return the numero
      */
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
     /**
      * @param numero the numero to set
      */
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
