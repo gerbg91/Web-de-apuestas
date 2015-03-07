@@ -15,6 +15,7 @@ import java.sql.Date;
 public class Navidad {
 
     private String numero;
+    private String nombre;
     private Date fecha;
     private float premios;
 
@@ -58,5 +59,19 @@ public class Navidad {
      */
     public void setPremios(float premios) {
         this.premios = premios;
+    }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 }

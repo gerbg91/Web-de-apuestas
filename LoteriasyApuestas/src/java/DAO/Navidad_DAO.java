@@ -7,7 +7,6 @@ package DAO;
 
 import Entidades.Navidad;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,14 +28,14 @@ public class Navidad_DAO {
      * @throws Exception
      */
     @SuppressWarnings("null")
-    public ArrayList<Navidad> comprobarNumero(Connection con, Date fecha, int numero) throws Exception {
+    public ArrayList<Navidad> comprobarNumero(Connection con, String fecha, int numero) throws Exception {
          ArrayList<Navidad> _listaNumeros = new ArrayList();
         ResultSet rs = null;
         PreparedStatement stmt = null;
         try {
-            stmt = con.prepareStatement("SELECT * FROM navidad where numero=?");
-            //stmt.setDate(1,fecha);
+            stmt = con.prepareStatement("SELECT * FROM navidad where numero=? and historico=?");
             stmt.setInt(1, numero);
+            stmt.setString(2,fecha);
             rs = stmt.executeQuery();
             Navidad _numeros = null;
             Navidad numeroPremiado = new Navidad();
@@ -62,19 +61,16 @@ public class Navidad_DAO {
      *
      * @param con
      * @param fecha
-     * @param numero
      * @return
      * @throws Exception
      */
-    public ArrayList<Navidad> listaPremiosSecundarios(Connection con, Date fecha) throws Exception {
+    public ArrayList<Navidad> listaPremiosSecundarios(Connection con, String fecha) throws Exception {
         ArrayList<Navidad> _listaNumeros = new ArrayList();
         ResultSet rs = null;
         PreparedStatement stmt = null;
         try {
-            //SELECT * FROM navidad where historico='2014-03-06' ORDER BY numero asc LIMIT 9;
-            stmt = con.prepareStatement("SELECT * FROM navidad ORDER BY numero asc LIMIT 9");
-            //stmt.setDate(1,fecha);
-            //stmt.setInt(1, numero);
+            stmt = con.prepareStatement("select * from navidad where (nombre=\"PrimerPremioCentenas\" or nombre=\"SegundoPremioCentenas\" or nombre=\"TercerPremioCentenas\" or nombre=\"CuartoPremioCentenas\" or nombre=\"PrimerPremioDecenas\" or nombre=\"SegundoPremioDecenas\" or nombre=\"TercerPremioDecenas\" or nombre=\"Reintegro\") and historico=?");
+            stmt.setString(1,fecha);
             rs = stmt.executeQuery();
             Navidad _numeros = null;
             while (rs.next()) {
@@ -105,6 +101,7 @@ public class Navidad_DAO {
      */
     private Navidad obtenNumeros(ResultSet rs, Navidad numeros) throws SQLException {
         numeros.setNumero(rs.getString("numero"));
+        numeros.setNombre(rs.getString("nombre"));
         numeros.setFecha(rs.getDate("historico"));
         numeros.setPremios(rs.getInt("premios"));
         return numeros;

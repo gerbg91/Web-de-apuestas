@@ -2,8 +2,6 @@
 package Presentation.Command;
 
 import BLL.NavidadBLL;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,18 +21,10 @@ public class ResultadoNavidadCommand extends ICommand {
         /*Recuperamos el numero de navidad dado por el usuario y el dinero jugado*/  
         int _numero_navidad = Integer.parseInt(request.getParameter("numeroDado"));
         float _cantidad_jugada = Float.parseFloat(request.getParameter("cantidadDinero"));
-         String _fecha;
-        _fecha = request.getParameter("fecha");
-        
-        //SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
-        
-         Date fecha1 =null;
-         
-         //fecha1 = (Date)formatoDeFecha.parse(_fecha);
-         
+        String _fecha = request.getParameter("fecha");
         NavidadBLL _navidadBLL=new NavidadBLL();
-        _navidadBLL.comprobarNumeroBLL(_numero_navidad,_cantidad_jugada, fecha1);
-        request.setAttribute("Premio", _navidadBLL.comprobarNumeroBLL(_numero_navidad,_cantidad_jugada, fecha1));
+        _navidadBLL.comprobarNumeroBLL(_numero_navidad,_cantidad_jugada, _fecha);
+        request.setAttribute("Premio", _navidadBLL.comprobarNumeroBLL(_numero_navidad,_cantidad_jugada, _fecha));
         return "/Resultado.jsp";
     }
 }
