@@ -29,10 +29,10 @@ public class NavidadBLL {
      */
     public float comprobarNumeroBLL(int numero, float cantidadDinero, String fecha) {
 
-        Connection _con = null;
+        Connection _con;
         float premioFinalEuros = 0;
         ArrayList<Navidad> _listaNumeros = new ArrayList();
-        ArrayList<Navidad> _numeroPremiado = new ArrayList();
+        ArrayList<Navidad> _numeroPremiado;
         try {
             Connection_DB _conexion_DB = new Connection_DB();
             _con = _conexion_DB.AbrirConexion();
@@ -67,80 +67,80 @@ public class NavidadBLL {
     private float obtenerPremiosSecundarios(int numero, String fecha, Connection _con, float cantidadDinero) {
 
         float premioFinalEuros = 0;
-        float _premioCentimos = 0;
-        float _cantidadDineroCentimos = 0;
-        float premioFinal = 0;
-        ArrayList<Navidad> _listaNumeros = new ArrayList();
+        float _premioCentimos;
+        float _cantidadDineroCentimos;
+        float premioFinal;
+        ArrayList<Navidad> _listaNumeros;
 
         try {
             Navidad_DAO _listaPremiosDAO = new Navidad_DAO();
             _listaNumeros = _listaPremiosDAO.listaPremiosSecundarios(_con, fecha);
 
             /*Parseo String*/
-            String prueba = Integer.toString(numero);
+            String numeroVarchar = Integer.toString(numero);
             /*Centenas*/
-            String prueba1 = prueba.substring(2);
+            String centenas = numeroVarchar.substring(2);
             /*Dos ultimas cifras*/
-            String prueba2 = prueba.substring(3);
+            String decenas = numeroVarchar.substring(3);
             /*Ultima cifra*/
-            String prueba3 = prueba.substring(4);
+            String unidad = numeroVarchar.substring(4);
 
-            if (_listaNumeros.get(0).getNumero().equals(prueba1)) {
+            if (_listaNumeros.get(0).getNumero().equals(centenas)) {
 
                 _premioCentimos = _listaNumeros.get(0).getPremios() * 100;
                 _cantidadDineroCentimos = cantidadDinero * 100;
                 premioFinal = (_premioCentimos * _cantidadDineroCentimos) / 100;
                 premioFinalEuros = premioFinal / 100;
 
-            } else if (_listaNumeros.get(1).getNumero().equals(prueba1)) {
+            } else if (_listaNumeros.get(1).getNumero().equals(centenas)) {
 
                 _premioCentimos = _listaNumeros.get(1).getPremios() * 100;
                 _cantidadDineroCentimos = cantidadDinero * 100;
                 premioFinal = (_premioCentimos * _cantidadDineroCentimos) / 100;
                 premioFinalEuros = premioFinal / 100;
 
-            } else if (_listaNumeros.get(2).getNumero().equals(prueba1)) {
+            } else if (_listaNumeros.get(2).getNumero().equals(centenas)) {
 
                 _premioCentimos = _listaNumeros.get(2).getPremios() * 100;
                 _cantidadDineroCentimos = cantidadDinero * 100;
                 premioFinal = (_premioCentimos * _cantidadDineroCentimos) / 100;
                 premioFinalEuros = premioFinal / 100;
-            } else if (_listaNumeros.get(3).getNumero().equals(prueba1)) {
+            } else if (_listaNumeros.get(3).getNumero().equals(centenas)) {
 
                 _premioCentimos = _listaNumeros.get(3).getPremios() * 100;
                 _cantidadDineroCentimos = cantidadDinero * 100;
                 premioFinal = (_premioCentimos * _cantidadDineroCentimos) / 100;
                 premioFinalEuros = premioFinal / 100;
 
-            } else if (_listaNumeros.get(4).getNumero().equals(prueba1)) {
+            } else if (_listaNumeros.get(4).getNumero().equals(centenas)) {
 
                 _premioCentimos = _listaNumeros.get(4).getPremios() * 100;
                 _cantidadDineroCentimos = cantidadDinero * 100;
                 premioFinal = (_premioCentimos * _cantidadDineroCentimos) / 100;
                 premioFinalEuros = premioFinal / 100;
 
-            } else if (_listaNumeros.get(5).getNumero().equals(prueba2)) {
+            } else if (_listaNumeros.get(5).getNumero().equals(decenas)) {
 
                 _premioCentimos = _listaNumeros.get(5).getPremios() * 100;
                 _cantidadDineroCentimos = cantidadDinero * 100;
                 premioFinal = (_premioCentimos * _cantidadDineroCentimos) / 100;
                 premioFinalEuros = premioFinal / 100;
 
-            } else if (_listaNumeros.get(6).getNumero().equals(prueba2)) {
+            } else if (_listaNumeros.get(6).getNumero().equals(decenas)) {
 
                 _premioCentimos = _listaNumeros.get(6).getPremios() * 100;
                 _cantidadDineroCentimos = cantidadDinero * 100;
                 premioFinal = (_premioCentimos * _cantidadDineroCentimos) / 100;
                 premioFinalEuros = premioFinal / 100;
 
-            } else if (_listaNumeros.get(7).getNumero().equals(prueba2)) {
+            } else if (_listaNumeros.get(7).getNumero().equals(decenas)) {
 
                 _premioCentimos = _listaNumeros.get(7).getPremios() * 100;
                 _cantidadDineroCentimos = cantidadDinero * 100;
                 premioFinal = (_premioCentimos * _cantidadDineroCentimos) / 100;
                 premioFinalEuros = premioFinal / 100;
 
-            } else if (_listaNumeros.get(8).getNumero().equals(prueba3)) {
+            } else if (_listaNumeros.get(8).getNumero().equals(unidad)) {
 
                 _premioCentimos = _listaNumeros.get(8).getPremios() * 100;
                 _cantidadDineroCentimos = cantidadDinero * 100;

@@ -39,14 +39,14 @@
         </div>
     </div>
         
-        <div class="contenedor_izquierdo"><div class="header"><a class="icon-sphere"></a>Euromillón</div>
-        <p>SORTEO DEL EUROMILLÓN
-      Resultado del 3 del sabado</p>
+        <div class="contenedor_izquierdo"><div class="header"><a class="icon-sphere"></a>Cupón Diario</div>
+        <p>SORTEO DEL CUPÓN DIARIO
+      Resultado del 3 del jueves</p>
         <div class="footer_sorteo">
-        <a class="botonComprobar"  href="Controller?opID=euromillon">COMPRUEBA</a>  
+        <a class="botonComprobar"  href="Controller?opID=Cupon">COMPRUEBA</a>  
             <div class="rigth">
                 <p>Próximo sorteo</p> 
-                <p>Día 6 Sabado de 2016</p>
+                <p>Día 6 lunes de 2016</p>
             </div>
         </div>
     </div>

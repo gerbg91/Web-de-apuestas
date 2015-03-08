@@ -13,9 +13,9 @@
     </head>
     <body>         
         <div id="search_section">
-             <form action="Controller?opID=ResultadoNino" method="POST">
+             <form action="Controller?opID=ResultadoCupon" method="POST">
             Numero:<input type="number" name="numeroDado"/>
-            Cantidad en dinero:<input type="number" name="cantidadDinero"  step="any"/>€
+            Serie:<input type="number" name="serieDado"/>
             <input type="submit" value="Comprobar" />
             <select name="fecha">
                     <option value="2015-03-07">07-03-2015</option>
