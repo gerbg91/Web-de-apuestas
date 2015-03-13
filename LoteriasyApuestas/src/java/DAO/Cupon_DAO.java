@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -32,10 +33,10 @@ public class Cupon_DAO {
         ResultSet rs = null;
         PreparedStatement stmt = null;
         try {
-            stmt = con.prepareStatement("SELECT * FROM cupon");
-            //stmt.setString(2, fecha);
+            stmt = con.prepareStatement("SELECT * FROM cupon where historico=?");
+            stmt.setString(1, fecha);
             rs = stmt.executeQuery();
-            Cupon _numeros = null;
+            Cupon _numeros;
             while (rs.next()) {
                 _numeros = new Cupon();
                 _listaNumeros.add(obtenNumeros(rs, _numeros));
@@ -64,9 +65,43 @@ public class Cupon_DAO {
      */
     private Cupon obtenNumeros(ResultSet rs, Cupon numeros) throws SQLException {
         numeros.setNumero(rs.getString("numero"));
-        numeros.setSerie(rs.getString("serie"));
+        numeros.setNombre(rs.getString("nombre"));
         numeros.setFecha(rs.getDate("historico"));
         numeros.setPremios(rs.getInt("premios"));
         return numeros;
+    }
+    
+     /**
+     * Metodo que inserta en la base de datos
+     * 
+     * @param _con
+     * @param numero
+     * @param cantidadPremio
+     * @param fecha
+     * @param TipoPremio
+     * @return
+     * @throws Exception 
+     */
+    public boolean insertarNumero(Connection _con, int numero, float cantidadPremio, String fecha, String TipoPremio) throws Exception {  
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+        try {
+            stmt = _con.prepareStatement("INSERT INTO cupon (numero, nombre, historico ,premios) VALUES (?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1,Integer.toString(numero));
+            stmt.setString(2,TipoPremio);
+            stmt.setString(3,fecha);
+            stmt.setFloat(4,cantidadPremio);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            throw new Exception("Ha habido un problema al insertar los numeros en la BD " + ex.getMessage());
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+        return false;
     }
 }

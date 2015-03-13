@@ -14,7 +14,7 @@ import java.sql.Date;
 public class Cupon {
     
     private String numero;
-    private String serie;
+    private String nombre;
     private Date fecha;
     private float premios;
 
@@ -30,20 +30,6 @@ public class Cupon {
      */
     public void setNumero(String numero) {
         this.numero = numero;
-    }
-
-    /**
-     * @return the serie
-     */
-    public String getSerie() {
-        return serie;
-    }
-
-    /**
-     * @param serie the serie to set
-     */
-    public void setSerie(String serie) {
-        this.serie = serie;
     }
 
     /**
@@ -72,5 +58,19 @@ public class Cupon {
      */
     public void setPremios(float premios) {
         this.premios = premios;
+    }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 }

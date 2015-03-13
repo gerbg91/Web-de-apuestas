@@ -57,9 +57,9 @@ public class CuponBLL {
           if(!_numerosPremiados.get(0).getNumero().equals(numeroVarchar) & !_numerosPremiados.get(8).getNumero().equals(numeroSerie)){  
             if (_numerosPremiados.get(0).getNumero().equals(numeroVarchar)){
                 premioFinal = _numerosPremiados.get(0).getPremios();
-            }else if (_numerosPremiados.get(1).getNumero().equals(numeroPosterior)){
+            }else if (_numerosPremiados.get(1).getNumero().equals(numeroAnterior)){
                 premioFinal = _numerosPremiados.get(1).getPremios();
-            }else if(_numerosPremiados.get(2).getNumero().equals(numeroAnterior)){
+            }else if(_numerosPremiados.get(2).getNumero().equals(numeroPosterior)){
                 premioFinal = _numerosPremiados.get(2).getPremios();
             }else if(_numerosPremiados.get(3).getNumero().equals(cuatroCifras)){
                 premioFinal = _numerosPremiados.get(3).getPremios();
@@ -68,9 +68,9 @@ public class CuponBLL {
             }else if(_numerosPremiados.get(5).getNumero().equals(dosCifras)){
                 premioFinal = _numerosPremiados.get(5).getPremios();
             }else if(_numerosPremiados.get(6).getNumero().equals(ultimaCifra)){
-                premioFinal = _numerosPremiados.get(6).getPremios();
+                premioFinal = (float) 1.5;
             }else if(_numerosPremiados.get(7).getNumero().equals(primeraCifra)){
-                premioFinal = _numerosPremiados.get(7).getPremios();
+                premioFinal = (float) 1.5;
             }
           }else {
               premioFinal = (float) 1000000000000.0;
@@ -80,5 +80,30 @@ public class CuponBLL {
             System.out.println("Excepcion->" + ex.getMessage());
         }
         return premioFinal;
+    }
+    
+    /**
+     * Metodo que insertar en la base de datos el numero
+     *
+     * @param numero
+     * @param cantidadPremio
+     * @param TipoPremio
+     * @param fecha
+     * @return
+     */
+    public boolean insertarNumeroBLL(int numero, float cantidadPremio, String fecha, String TipoPremio) {
+        
+        boolean _insercion = false;
+        Connection _con;
+        try {
+            Connection_DB _conexion_DB = new Connection_DB();
+            _con = _conexion_DB.AbrirConexion();
+            Cupon_DAO _compruebaDAO = new Cupon_DAO();
+            _insercion = _compruebaDAO.insertarNumero(_con, numero, cantidadPremio, fecha ,TipoPremio);
+            _conexion_DB.CerrarConexion(_con);
+        } catch (Exception ex) {
+            System.out.println("Excepcion->" + ex.getMessage());
+        }
+        return _insercion;
     }
 }

@@ -6,6 +6,7 @@
 package BLL;
 
 import DAO.Connection_DB;
+import DAO.Navidad_DAO;
 import DAO.Nino_DAO;
 import Entidades.Nino;
 import java.sql.Connection;
@@ -117,11 +118,8 @@ public class NinoBLL {
                         }
                     } else if (_listaNumeros.get(e).getNumero().length() == 1) {
                         if (_listaNumeros.get(e).getNumero().equals(unaCifra)) {
-
-                            _premioCentimos = _listaNumeros.get(e).getPremios() * 100;
-                            _cantidadDineroCentimos = cantidadDinero * 100;
-                            premioFinal = (_premioCentimos * _cantidadDineroCentimos) / 100;
-                            premioFinalEuros = premioFinal / 100;
+                            
+                            premioFinalEuros = cantidadDinero;
 
                         }
                     }
@@ -132,5 +130,31 @@ public class NinoBLL {
         }
         return premioFinalEuros;
     }
-
+    
+    
+    /**
+     * Metodo que insertar en la base de datos el numero
+     *
+     * @param numero
+     * @param cantidadPremio
+     * @param TipoPremio
+     * @param fecha
+     * @return
+     */
+    public boolean insertarNumeroBLL(int numero, float cantidadPremio, String fecha, String TipoPremio) {
+        
+        boolean _insercion = false;
+        Connection _con;
+        try {
+            Connection_DB _conexion_DB = new Connection_DB();
+            _con = _conexion_DB.AbrirConexion();
+            Nino_DAO _compruebaDAO = new Nino_DAO();
+            _insercion = _compruebaDAO.insertarNumero(_con, numero, cantidadPremio, fecha ,TipoPremio);
+            _conexion_DB.CerrarConexion(_con);
+        } catch (Exception ex) {
+            System.out.println("Excepcion->" + ex.getMessage());
+        }
+        return _insercion;
+    }
 }
+

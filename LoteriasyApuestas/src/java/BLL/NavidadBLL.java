@@ -55,7 +55,7 @@ public class NavidadBLL {
     }
 
     /**
-     * Metodo que obtiene el premio Final en euros segun su terminarcion en
+     * Metodo que obtiene el premio Final en euros segun su terminacion en
      * centenas, decenas y unidad de reintegro
      *
      * @param numero
@@ -141,16 +141,35 @@ public class NavidadBLL {
                 premioFinalEuros = premioFinal / 100;
 
             } else if (_listaNumeros.get(8).getNumero().equals(unidad)) {
-
-                _premioCentimos = _listaNumeros.get(8).getPremios() * 100;
-                _cantidadDineroCentimos = cantidadDinero * 100;
-                premioFinal = (_premioCentimos * _cantidadDineroCentimos) / 100;
-                premioFinalEuros = premioFinal / 100;
+                premioFinalEuros = cantidadDinero;
             }
         } catch (Exception ex) {
             System.out.println("Excepcion->" + ex.getMessage());
         }
         return premioFinalEuros;
     }
-
+      /**
+     * Metodo que insertar en la base de datos el numero
+     *
+     * @param numero
+     * @param cantidadPremio
+     * @param TipoPremio
+     * @param fecha
+     * @return
+     */
+    public boolean insertarNumeroBLL(int numero, float cantidadPremio, String fecha, String TipoPremio) {
+        
+        boolean _insercion = false;
+        Connection _con;
+        try {
+            Connection_DB _conexion_DB = new Connection_DB();
+            _con = _conexion_DB.AbrirConexion();
+            Navidad_DAO _compruebaDAO = new Navidad_DAO();
+            _insercion = _compruebaDAO.insertarNumero(_con, numero, cantidadPremio, fecha ,TipoPremio);
+            _conexion_DB.CerrarConexion(_con);
+        } catch (Exception ex) {
+            System.out.println("Excepcion->" + ex.getMessage());
+        }
+        return _insercion;
+    }
 }
