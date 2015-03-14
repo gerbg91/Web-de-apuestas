@@ -1,9 +1,6 @@
-<%-- 
-    Document   : InsertarNino
-    Created on : 13-mar-2015, 17:06:51
-    Author     : Ger
---%>
-
+<%@page import="Entidades.Nino"%>
+<%@page import="Entidades.Navidad"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,6 +10,24 @@
     </head>
     <body>
         <div id="search_section">
+            <jsp:include page="menu.jsp" />
+            <div class="intrucciones">
+                <h3>Instrucciones</h3>
+                Se DEBEN colocar TODOS los premios 
+                <br>
+                -Para el primer premio , segundo , tercero, escribir los cinco números.
+                <br>
+                -Para los premios de cuatro cifras, escribir los cuatro ultimos números.
+                <br>
+                -Para los premios de tres cifras escribir los tres ultimos numeros.
+                <br>
+                -Para el premios de dos cifras, escribir los dos números del final.
+                <br>
+                -Para los reintegros escribir solo el numero correspondiente.
+                <br>
+                -En todos se debera colocar la cantidad el premio en euros, la cantidad en premios sera en relacion a un euro jugado.
+            </div>
+
             <form action="Controller?opID=InsertarNino" method="POST">
                 Numero:<input type="number" name="numeroDado"/>
                 <select name="TipoLoteria">
@@ -23,11 +38,38 @@
                 Premio en euros:<input type="number" name="cantidadDinero"  step="any"/>€
                 <input type="submit" value="Comprobar" />
                 <select name="fecha">
-                    <option value="2015-03-07">07-03-2015</option>
+                    <option value="2015-03-08">08-03-2015</option>
                     <option value="2014-12-21">21-12-2014</option>
                     <option value="2013-12-21">21-12-2013</option>
-            </select> 
+                </select> 
+                <input type="radio" name="opcion" value="eliminar" />Eliminar
+                <input type="radio" name="opcion" value="anadir" />Añadir
             </form>
+            <h4>Busqueda</h4>
+            <form action="Controller?opID=BuscarNino" method="POST">
+                Buscar por numero: <input type="number" name="buscar"/> 
+                <input type="submit" value="buscar" />
+            </form> 
+            <div class="results_table">
+            <table>
+                <tr> 
+                    <% ArrayList _lista = (ArrayList) request.getAttribute("NumerosBuscados");
+                        if (_lista != null) {
+                            for (int i = 0; i < _lista.size(); i++) {
+                                Nino _numero = (Nino) _lista.get(i);
+                    %>            
+                    <td><%=_numero.getNumero()%></td>
+                    <td><%=_numero.getNombre()%></td>  
+                    <td><%=_numero.getPremios()%></td>
+                    <td><%=_numero.getFecha()%></td> 
+                </tr>
+                    <%
+                            }
+                        }
+                    %>
+                
+            </table>
+            </div>
         </div>
     </body>
 </html>

@@ -22,8 +22,14 @@ public class InsertarNavidadCommand extends ICommand {
         String _tipo_loteria = request.getParameter("TipoLoteria");
         float _premio = Float.parseFloat(request.getParameter("cantidadDinero"));
         String _fecha = request.getParameter("fecha");
+         String _opcion = request.getParameter("opcion");
         NavidadBLL _navidadBLL=new NavidadBLL();
-        request.setAttribute("Premio", _navidadBLL.insertarNumeroBLL(_numero_navidad,_premio,_fecha,_tipo_loteria));
-        return "/index.jsp";
+      
+        if(_opcion.equalsIgnoreCase("anadir")){
+          _navidadBLL.insertarNumeroBLL(_numero_navidad,_premio,_fecha,_tipo_loteria);
+        }else {
+           _navidadBLL.eliminarNumeroBLL(_numero_navidad,_premio,_fecha,_tipo_loteria); 
+        }
+        return "/InsertarNavidad.jsp";
     }
 }

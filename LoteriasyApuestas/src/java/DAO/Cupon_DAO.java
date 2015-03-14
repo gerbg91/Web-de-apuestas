@@ -82,7 +82,7 @@ public class Cupon_DAO {
      * @return
      * @throws Exception 
      */
-    public boolean insertarNumero(Connection _con, int numero, float cantidadPremio, String fecha, String TipoPremio) throws Exception {  
+    public void insertarNumero(Connection _con, int numero, float cantidadPremio, String fecha, String TipoPremio) throws Exception {  
         ResultSet rs = null;
         PreparedStatement stmt = null;
         try {
@@ -102,6 +102,5 @@ public class Cupon_DAO {
                 stmt.close();
             }
         }
-        return false;
     }
 }

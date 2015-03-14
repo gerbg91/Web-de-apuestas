@@ -8,6 +8,7 @@ package BLL;
 import DAO.Connection_DB;
 import DAO.Navidad_DAO;
 import DAO.Nino_DAO;
+import Entidades.Navidad;
 import Entidades.Nino;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -139,22 +140,62 @@ public class NinoBLL {
      * @param cantidadPremio
      * @param TipoPremio
      * @param fecha
-     * @return
      */
-    public boolean insertarNumeroBLL(int numero, float cantidadPremio, String fecha, String TipoPremio) {
+    public void insertarNumeroBLL(int numero, float cantidadPremio, String fecha, String TipoPremio) {
         
-        boolean _insercion = false;
         Connection _con;
         try {
             Connection_DB _conexion_DB = new Connection_DB();
             _con = _conexion_DB.AbrirConexion();
             Nino_DAO _compruebaDAO = new Nino_DAO();
-            _insercion = _compruebaDAO.insertarNumero(_con, numero, cantidadPremio, fecha ,TipoPremio);
+            _compruebaDAO.insertarNumero(_con, numero, cantidadPremio, fecha ,TipoPremio);
             _conexion_DB.CerrarConexion(_con);
         } catch (Exception ex) {
             System.out.println("Excepcion->" + ex.getMessage());
         }
-        return _insercion;
+    }
+ 
+/**
+ * Metodo que elimina de la base de datos
+ * 
+ * @param numero
+ * @param cantidadPremio
+ * @param fecha
+ * @param TipoPremio 
+ */
+     public void eliminarNumeroBLL(int numero, float cantidadPremio, String fecha, String TipoPremio) {
+      Connection _con;
+        try {
+            Connection_DB _conexion_DB = new Connection_DB();
+            _con = _conexion_DB.AbrirConexion();
+            Nino_DAO _compruebaDAO = new Nino_DAO();
+             _compruebaDAO.eliminarNumero(_con, numero, cantidadPremio, fecha ,TipoPremio);
+            _conexion_DB.CerrarConexion(_con);
+        } catch (Exception ex) {
+            System.out.println("Excepcion->" + ex.getMessage());
+        }
+}
+
+/**
+ * Metodo que busca el numero en la base de datos
+ * 
+ * 
+ * @param _numero_busqueda 
+ * @return  
+ */
+    public ArrayList<Nino> buscarNumeroBLL(int _numero_busqueda) {
+       ArrayList<Nino> _listaNumeros = null;
+        Connection _con;
+        try {
+            Connection_DB _conexion_DB = new Connection_DB();
+            _con = _conexion_DB.AbrirConexion();
+            Nino_DAO _compruebaDAO = new Nino_DAO();
+            _listaNumeros= _compruebaDAO.buscarNumero(_con, _numero_busqueda);
+            _conexion_DB.CerrarConexion(_con);
+        } catch (Exception ex) {
+            System.out.println("Excepcion->" + ex.getMessage());
+        }
+        return _listaNumeros;
     }
 }
 

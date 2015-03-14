@@ -23,7 +23,13 @@ public class InsertarNinoCommand extends ICommand {
         float _premio = Float.parseFloat(request.getParameter("cantidadDinero"));
         String _fecha = request.getParameter("fecha");
         NinoBLL _ninoBLL=new NinoBLL();
-        request.setAttribute("Premio", _ninoBLL.insertarNumeroBLL(_numero_nino,_premio,_fecha,_tipo_loteria));
-        return "/index.jsp";
+         String _opcion = request.getParameter("opcion");
+        
+         if(_opcion.equalsIgnoreCase("anadir")){
+          _ninoBLL.insertarNumeroBLL(_numero_nino,_premio,_fecha,_tipo_loteria);
+        }else {
+           _ninoBLL.eliminarNumeroBLL(_numero_nino,_premio,_fecha,_tipo_loteria); 
+        }
+        return "/InsertarNino.jsp";
     }
 }

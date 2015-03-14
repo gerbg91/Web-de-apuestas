@@ -155,21 +155,62 @@ public class NavidadBLL {
      * @param cantidadPremio
      * @param TipoPremio
      * @param fecha
-     * @return
      */
-    public boolean insertarNumeroBLL(int numero, float cantidadPremio, String fecha, String TipoPremio) {
-        
-        boolean _insercion = false;
+    public void insertarNumeroBLL(int numero, float cantidadPremio, String fecha, String TipoPremio) {
+
         Connection _con;
         try {
             Connection_DB _conexion_DB = new Connection_DB();
             _con = _conexion_DB.AbrirConexion();
             Navidad_DAO _compruebaDAO = new Navidad_DAO();
-            _insercion = _compruebaDAO.insertarNumero(_con, numero, cantidadPremio, fecha ,TipoPremio);
+             _compruebaDAO.insertarNumero(_con, numero, cantidadPremio, fecha ,TipoPremio);
             _conexion_DB.CerrarConexion(_con);
         } catch (Exception ex) {
             System.out.println("Excepcion->" + ex.getMessage());
         }
-        return _insercion;
+    }
+    
+/**
+ * Metodo que elimina de la base de datos
+ * 
+ * @param numero
+ * @param cantidadPremio
+ * @param fecha
+ * @param TipoPremio 
+ */
+    public void eliminarNumeroBLL(int numero, float cantidadPremio, String fecha, String TipoPremio) {
+      Connection _con;
+        try {
+            Connection_DB _conexion_DB = new Connection_DB();
+            _con = _conexion_DB.AbrirConexion();
+            Navidad_DAO _compruebaDAO = new Navidad_DAO();
+             _compruebaDAO.eliminarNumero(_con, numero, cantidadPremio, fecha ,TipoPremio);
+            _conexion_DB.CerrarConexion(_con);
+        } catch (Exception ex) {
+            System.out.println("Excepcion->" + ex.getMessage());
+        }
+}
+    
+    
+/**
+ * Metodo que busca el numero en la base de datos
+ * 
+ * 
+ * @param _numero_busqueda 
+ * @return  
+ */
+    public ArrayList<Navidad> buscarNumeroBLL(int _numero_busqueda) {
+       ArrayList<Navidad> _listaNumeros = null;
+        Connection _con;
+        try {
+            Connection_DB _conexion_DB = new Connection_DB();
+            _con = _conexion_DB.AbrirConexion();
+            Navidad_DAO _compruebaDAO = new Navidad_DAO();
+            _listaNumeros= _compruebaDAO.buscarNumero(_con, _numero_busqueda);
+            _conexion_DB.CerrarConexion(_con);
+        } catch (Exception ex) {
+            System.out.println("Excepcion->" + ex.getMessage());
+        }
+        return _listaNumeros;
     }
 }

@@ -23,7 +23,7 @@ public class InsertarCuponCommand extends ICommand {
         float _premio = Float.parseFloat(request.getParameter("cantidadDinero"));
         String _fecha = request.getParameter("fecha");
         CuponBLL _cuponBLL=new CuponBLL();
-        request.setAttribute("Premio", _cuponBLL.insertarNumeroBLL(_numero_cupon,_premio,_fecha,_tipo_loteria));
-        return "/index.jsp";
+         _cuponBLL.insertarNumeroBLL(_numero_cupon,_premio,_fecha,_tipo_loteria);
+        return "/InsertarCupon.jsp";
     }
 }

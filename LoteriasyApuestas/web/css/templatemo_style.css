@@ -104,7 +104,6 @@ p {
     color: #505050;
 }
 
-
 #templatemo_content_top {
     clear: both;
     height: 510px;
@@ -211,7 +210,13 @@ p {
     border-right: none;
 }
 
+/*setting*/
 
+#setting {
+    float: right;
+    margin-top: -85px;
+    margin-right: 15px;
+}
 
 
 

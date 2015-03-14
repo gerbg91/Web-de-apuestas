@@ -117,10 +117,9 @@ public class Navidad_DAO {
      * @param cantidadPremio
      * @param fecha
      * @param TipoPremio
-     * @return
      * @throws Exception 
      */
-    public boolean insertarNumero(Connection _con, int numero, float cantidadPremio, String fecha, String TipoPremio) throws Exception {  
+    public void insertarNumero(Connection _con, int numero, float cantidadPremio, String fecha, String TipoPremio) throws Exception {  
         ResultSet rs = null;
         PreparedStatement stmt = null;
         try {
@@ -140,6 +139,72 @@ public class Navidad_DAO {
                 stmt.close();
             }
         }
-        return false;
+    }
+/**
+ * Metodo que elimina de la base de datos
+ * 
+ * 
+ * @param _con
+ * @param numero
+ * @param cantidadPremio
+ * @param fecha
+ * @param TipoPremio
+ * @throws Exception 
+ */
+    public void eliminarNumero(Connection _con, int numero, float cantidadPremio, String fecha, String TipoPremio) throws Exception {
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+        try {
+            stmt = _con.prepareStatement("Delete from navidad where numero=? and nombre=? and historico=? and premios=?", Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1,Integer.toString(numero));
+            stmt.setString(2,TipoPremio);
+            stmt.setString(3,fecha);
+            stmt.setFloat(4,cantidadPremio);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            throw new Exception("Ha habido un problema al borrar los numeros en la BD " + ex.getMessage());
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+    
+    }
+    
+/**
+ * Metodo que busca en la base de datos
+ * 
+ * @param _con
+ * @param _numero_busqueda
+ * @return
+ * @throws Exception 
+ */
+    public ArrayList<Navidad> buscarNumero(Connection _con, int _numero_busqueda) throws Exception {
+     ArrayList<Navidad> _listaNumeros = new ArrayList();
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+        try {
+            stmt = _con.prepareStatement("select * from navidad where numero=?");
+            stmt.setString(1,Integer.toString(_numero_busqueda));
+            rs = stmt.executeQuery();
+            Navidad _numeros = null;
+            while (rs.next()) {
+                _numeros = new Navidad();
+                _listaNumeros.add(obtenNumeros(rs, _numeros));
+            }
+        } catch (SQLException ex) {
+            throw new Exception("Ha habido un problema al buscar los numeros en la BD " + ex.getMessage());
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+        return _listaNumeros;
     }
 }

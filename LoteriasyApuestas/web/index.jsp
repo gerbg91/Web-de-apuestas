@@ -7,9 +7,8 @@
     </head>
     <body>
         <div id="templatemo_container">
-            <div id="templatemo_banner">
-
-            </div> 
+            <div id="templatemo_banner"></div>
+            <div><a href="Controller?opID=Login" class="icon-cog" id="setting" ></a></div>
             <div id="templatemo_content_top">            
                 <% String paginaprincipal = (String) request.getAttribute("paginaprincipal");
                 if (paginaprincipal != null){%>
