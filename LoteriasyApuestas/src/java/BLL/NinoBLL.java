@@ -29,7 +29,7 @@ public class NinoBLL {
      * @param fecha
      * @return
      */
-    public float comprobarNumeroBLL(int numero, float cantidadDinero, String fecha) {
+    public float comprobarNumeroBLL(String numero, float cantidadDinero, String fecha) {
 
         Connection _con;
         float premioFinalEuros = 0;
@@ -66,7 +66,7 @@ public class NinoBLL {
      * @param cantidadDinero
      * @return
      */
-    private float obtenerPremiosSecundarios(int numero, String fecha, Connection _con, float cantidadDinero) {
+    private float obtenerPremiosSecundarios(String numero, String fecha, Connection _con, float cantidadDinero) {
 
         float premioFinalEuros = 0;
         float _premioCentimos;
@@ -78,8 +78,8 @@ public class NinoBLL {
             Nino_DAO _listaPremiosDAO = new Nino_DAO();
             _listaNumeros = _listaPremiosDAO.listaPremiosSecundarios(_con, fecha);
 
-            /*Parseo String*/
-            String numeroVarchar = Integer.toString(numero);
+            /*Cambio de variable*/
+            String numeroVarchar = numero;
             /*Cuatro cifras*/
             String cuatroCifras = numeroVarchar.substring(1);
             /*Centenas*/
@@ -141,7 +141,7 @@ public class NinoBLL {
      * @param TipoPremio
      * @param fecha
      */
-    public void insertarNumeroBLL(int numero, float cantidadPremio, String fecha, String TipoPremio) {
+    public void insertarNumeroBLL(String numero, float cantidadPremio, String fecha, String TipoPremio) {
         
         Connection _con;
         try {
@@ -159,17 +159,15 @@ public class NinoBLL {
  * Metodo que elimina de la base de datos
  * 
  * @param numero
- * @param cantidadPremio
- * @param fecha
- * @param TipoPremio 
+ * @param fecha 
  */
-     public void eliminarNumeroBLL(int numero, float cantidadPremio, String fecha, String TipoPremio) {
+     public void eliminarNumeroBLL(String numero, String fecha) {
       Connection _con;
         try {
             Connection_DB _conexion_DB = new Connection_DB();
             _con = _conexion_DB.AbrirConexion();
             Nino_DAO _compruebaDAO = new Nino_DAO();
-             _compruebaDAO.eliminarNumero(_con, numero, cantidadPremio, fecha ,TipoPremio);
+             _compruebaDAO.eliminarNumero(_con, numero, fecha);
             _conexion_DB.CerrarConexion(_con);
         } catch (Exception ex) {
             System.out.println("Excepcion->" + ex.getMessage());
@@ -196,6 +194,30 @@ public class NinoBLL {
             System.out.println("Excepcion->" + ex.getMessage());
         }
         return _listaNumeros;
+    }
+    
+    
+/**
+ * Metodo que busca los numeros por fecha
+ * 
+ * @param _fecha
+ * @return 
+ */
+    public ArrayList<Nino> buscarNumeroByFechaBLL(String _fecha) {
+   
+        ArrayList<Nino> _listaNumeros = null;
+        Connection _con;
+        try {
+            Connection_DB _conexion_DB = new Connection_DB();
+            _con = _conexion_DB.AbrirConexion();
+            Nino_DAO _compruebaDAO = new Nino_DAO();
+            _listaNumeros= _compruebaDAO.buscarNumeroByFecha(_con, _fecha);
+            _conexion_DB.CerrarConexion(_con);
+        } catch (Exception ex) {
+            System.out.println("Excepcion->" + ex.getMessage());
+        }
+        return _listaNumeros;
+    
     }
 }
 

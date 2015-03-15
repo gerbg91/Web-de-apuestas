@@ -25,23 +25,19 @@ public class CuponBLL {
      * @param fecha
      * @return
      */
-    public float comprobarNumeroBLL(int numero, int numeroSerie, String fecha) {
+    public float comprobarNumeroBLL(String numero, int numeroSerie, String fecha) {
 
         Connection _con;
         ArrayList<Cupon> _numerosPremiados;
-        float  premioFinal = 0;
+        float premioFinal = 0;
         try {
             Connection_DB _conexion_DB = new Connection_DB();
             _con = _conexion_DB.AbrirConexion();
-            Cupon_DAO _compruebaDAO = new Cupon_DAO();    
-            
-            /*Parseo String*/
-            String numeroVarchar = Integer.toString(numero);
+            Cupon_DAO _compruebaDAO = new Cupon_DAO();
+
+            /*Cambio de variable*/
+            String numeroVarchar = numero;
             String serie = Integer.toString(numeroSerie);
-            /*Numero Posterios*/
-            String numeroPosterior = Integer.toString(numero+1);
-            /*Numero Anterior*/
-            String numeroAnterior = Integer.toString(numero-1);
             /*Cuatro cifras*/
             String cuatroCifras = numeroVarchar.substring(1);
             /*Tres cifras*/
@@ -51,38 +47,37 @@ public class CuponBLL {
             /*Ultima cifra*/
             String ultimaCifra = numeroVarchar.substring(4);
             /*Primera cifra*/
-            String primeraCifra = numeroVarchar.substring(0,1);
-            
-            
-            _numerosPremiados = _compruebaDAO.comprobarNumero(_con, fecha, numero);
-          if(!_numerosPremiados.get(0).getNumero().equals(numeroVarchar) | !_numerosPremiados.get(8).getNumero().equals(serie)){  
-            if (_numerosPremiados.get(0).getNumero().equals(numeroVarchar)){
-                premioFinal = _numerosPremiados.get(0).getPremios();
-            }else if (_numerosPremiados.get(1).getNumero().equals(numeroAnterior)){
-                premioFinal = _numerosPremiados.get(1).getPremios();
-            }else if(_numerosPremiados.get(2).getNumero().equals(numeroPosterior)){
-                premioFinal = _numerosPremiados.get(2).getPremios();
-            }else if(_numerosPremiados.get(3).getNumero().equals(cuatroCifras)){
-                premioFinal = _numerosPremiados.get(3).getPremios();
-            }else if(_numerosPremiados.get(4).getNumero().equals(tresCifras)){
-                premioFinal = _numerosPremiados.get(4).getPremios();
-            }else if(_numerosPremiados.get(5).getNumero().equals(dosCifras)){
-                premioFinal = _numerosPremiados.get(5).getPremios();
-            }else if(_numerosPremiados.get(6).getNumero().equals(ultimaCifra)){
-                premioFinal = (float) 1.5;
-            }else if(_numerosPremiados.get(7).getNumero().equals(primeraCifra)){
-                premioFinal = (float) 1.5;
+            String primeraCifra = numeroVarchar.substring(0, 1);
+
+            _numerosPremiados = _compruebaDAO.comprobarNumero(_con, fecha);
+            if (!_numerosPremiados.get(0).getNumero().equals(numeroVarchar) & !_numerosPremiados.get(8).getNumero().equals(serie)) {
+                if (_numerosPremiados.get(0).getNumero().equals(numeroVarchar)) {
+                    premioFinal = _numerosPremiados.get(0).getPremios();
+                } else if (_numerosPremiados.get(1).getNumero().equals(numeroVarchar)) {
+                    premioFinal = _numerosPremiados.get(1).getPremios();
+                } else if (_numerosPremiados.get(2).getNumero().equals(numeroVarchar)) {
+                    premioFinal = _numerosPremiados.get(2).getPremios();
+                } else if (_numerosPremiados.get(3).getNumero().equals(cuatroCifras)) {
+                    premioFinal = _numerosPremiados.get(3).getPremios();
+                } else if (_numerosPremiados.get(4).getNumero().equals(tresCifras)) {
+                    premioFinal = _numerosPremiados.get(4).getPremios();
+                } else if (_numerosPremiados.get(5).getNumero().equals(dosCifras)) {
+                    premioFinal = _numerosPremiados.get(5).getPremios();
+                } else if (_numerosPremiados.get(6).getNumero().equals(ultimaCifra)) {
+                    premioFinal = _numerosPremiados.get(6).getPremios();
+                } else if (_numerosPremiados.get(7).getNumero().equals(primeraCifra)) {
+                    premioFinal = _numerosPremiados.get(7).getPremios();
+                }
+            } else {
+                premioFinal = (float) 3000.0;
             }
-          }else {
-              premioFinal = (float) 1000000000000.0;
-          }        
             _conexion_DB.CerrarConexion(_con);
         } catch (Exception ex) {
             System.out.println("Excepcion->" + ex.getMessage());
         }
         return premioFinal;
     }
-    
+
     /**
      * Metodo que insertar en la base de datos el numero
      *
@@ -91,14 +86,75 @@ public class CuponBLL {
      * @param TipoPremio
      * @param fecha
      */
-    public void insertarNumeroBLL(int numero, float cantidadPremio, String fecha, String TipoPremio) {
-        
+    public void insertarNumeroBLL(String numero, float cantidadPremio, String fecha, String TipoPremio) {
+
         Connection _con;
         try {
             Connection_DB _conexion_DB = new Connection_DB();
             _con = _conexion_DB.AbrirConexion();
             Cupon_DAO _compruebaDAO = new Cupon_DAO();
-            _compruebaDAO.insertarNumero(_con, numero, cantidadPremio, fecha ,TipoPremio);
+            _compruebaDAO.insertarNumero(_con, numero, cantidadPremio, fecha, TipoPremio);
+            _conexion_DB.CerrarConexion(_con);
+        } catch (Exception ex) {
+            System.out.println("Excepcion->" + ex.getMessage());
+        }
+    }
+    /**
+     * Metodo que hace una busqueda por numero
+     * 
+     * @param _numero_busqueda
+     * @return 
+     */
+    public ArrayList<Cupon> buscarNumeroBLL(int _numero_busqueda) {
+        ArrayList<Cupon> _listaNumeros = null;
+        Connection _con;
+        try {
+            Connection_DB _conexion_DB = new Connection_DB();
+            _con = _conexion_DB.AbrirConexion();
+            Cupon_DAO _compruebaDAO = new Cupon_DAO();
+            _listaNumeros= _compruebaDAO.buscarNumero(_con, _numero_busqueda);
+            _conexion_DB.CerrarConexion(_con);
+        } catch (Exception ex) {
+            System.out.println("Excepcion->" + ex.getMessage());
+        }
+        return _listaNumeros;
+    
+    }
+/**
+ * Metodo que busca en la base de datos el numero by fecha
+ * 
+ * @param _fecha
+ * @return 
+ */
+    public ArrayList<Cupon> buscarNumeroByFechaBLL(String _fecha) {
+ ArrayList<Cupon> _listaNumeros = null;
+        Connection _con;
+        try {
+            Connection_DB _conexion_DB = new Connection_DB();
+            _con = _conexion_DB.AbrirConexion();
+            Cupon_DAO _compruebaDAO = new Cupon_DAO();
+            _listaNumeros= _compruebaDAO.buscarNumeroByFecha(_con, _fecha);
+            _conexion_DB.CerrarConexion(_con);
+        } catch (Exception ex) {
+            System.out.println("Excepcion->" + ex.getMessage());
+        }
+        return _listaNumeros;
+    
+    }
+/**
+ * Metodo que elimina un registro de la base de datos
+ * 
+ * @param _numero_cupon
+ * @param _fecha
+ */
+    public void eliminarNumeroBLL(String _numero_cupon, String _fecha) {
+
+      Connection _con;
+        try {
+            Connection_DB _conexion_DB = new Connection_DB();
+            _con = _conexion_DB.AbrirConexion();
+            Cupon_DAO _compruebaDAO = new Cupon_DAO();
+            _compruebaDAO.eliminarNumero(_con, _numero_cupon, _fecha);
             _conexion_DB.CerrarConexion(_con);
         } catch (Exception ex) {
             System.out.println("Excepcion->" + ex.getMessage());

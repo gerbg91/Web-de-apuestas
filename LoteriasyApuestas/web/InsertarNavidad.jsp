@@ -36,23 +36,41 @@
             <form action="Controller?opID=InsertarNavidad" method="POST">
                 Numero:<input type="number" name="numeroDado"/>
                 <select name="TipoLoteria">
-                    <option value="PrimerPremio">Premio Gordo</option>
+                    <option value="PrimerPremio">Primer Premio</option>
                     <option value="SegundoPremio">Segundo Premio</option>
                     <option value="TercerPremio">Tercer Premio</option>
+                    <option value="CuartoPremio">Cuarto Premio</option>
+                    <option value="QuintoPremio">Quinto Premio</option>
+                    <option value="Pedrea">Tercer Premio</option>
+                    <option value="AproxPrimerPremioSuperior">Aproximacion primer premio superior</option>
+                    <option value="AproxPrimerPremioInferior">Aproximacion primer premio inferior</option>
+                     <option value="AproxSegundoPremioSuperior">Aproximacion segundo premio superior</option>
+                    <option value="AproxSegundoPremioInferior">Aproximacion segundo premio inferior</option>
+                     <option value="AproxTercerPremioSuperior">Aproximacion tercer premio superior</option>
+                    <option value="AproxTercerPremioInferior">Aproximacion tercer premio inferior</option>
+                    <option value="PrimerPremioCentenas">Primer premio centenas</option>
+                    <option value="SegundoPremioCentenas">Segundo premio centenas</option>
+                    <option value="TercerPremioCentenas">Tercer premio centenas</option>
+                    <option value="CuartoPremioCentenas">Cuarto premio centenas</option>
+                    <option value="PrimerPremioDecenas">Primer premio decenas</option>
+                    <option value="SegundoPremioDecenas">Segundo premio decenas</option>
+                    <option value="TercerPremioDecenas">Tercer premio decenas</option>
+                    <option value="Reintegro">Reintegro</option>
                 </select> 
                 Premio en euros:<input type="number" name="cantidadDinero"  step="any"/>€
                 <input type="submit" value="Comprobar" />
-                <select name="fecha">
-                    <option value="2015-03-07">07-03-2015</option>
-                    <option value="2014-12-21">21-12-2014</option>
-                    <option value="2013-12-21">21-12-2013</option>
-                </select> 
+                <input type="text" name="fecha" placeholder="yyyy-MM-dd"/>
                 <input type="radio" name="opcion" value="eliminar" />Eliminar
                 <input type="radio" name="opcion" value="anadir" />Añadir
             </form>
             <h4>Busqueda</h4>
             <form action="Controller?opID=BuscarNavidad" method="POST">
                 Buscar por numero: <input type="number" name="buscar"/> 
+                <input type="submit" value="buscar" />
+            </form> 
+            <form action="Controller?opID=BuscarFechaNavidad" method="POST">
+                Buscar por fecha:
+                <input type="text" name="fecha" placeholder="yyyy-MM-dd"/>
                 <input type="submit" value="buscar" />
             </form> 
             <div class="results_table">

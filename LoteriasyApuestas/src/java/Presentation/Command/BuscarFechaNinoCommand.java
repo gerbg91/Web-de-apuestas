@@ -8,19 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet que accede a la logica de negocios y a busca los numeros por fecha
- * 
- * @author Ger 
+ * Accede a la logica de negocio y recupera una lista de numeros por fecha
+ *
+ * @author Ger
  */
-@WebServlet(name = "BuscarNinoCommand", urlPatterns = {"/BuscarNinoCommand"})
-public class BuscarNinoCommand extends ICommand {
+@WebServlet(name = "BuscarFechaNinoCommand", urlPatterns = {"/BuscarFechaNinoCommand"})
+public class BuscarFechaNinoCommand extends ICommand {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ArrayList<Nino> _listaNumeros = null;
-        int _numero_busqueda = Integer.parseInt(request.getParameter("buscar"));
+        String _fecha = request.getParameter("fecha");
         NinoBLL _ninoBLL = new NinoBLL();
-        _listaNumeros = _ninoBLL.buscarNumeroBLL(_numero_busqueda);
+        _listaNumeros = _ninoBLL.buscarNumeroByFechaBLL(_fecha);
         request.setAttribute("NumerosBuscados", _listaNumeros);
         return "/InsertarNino.jsp";
 

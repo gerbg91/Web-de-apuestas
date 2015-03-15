@@ -27,7 +27,7 @@ public class NavidadBLL {
      * @param fecha
      * @return
      */
-    public float comprobarNumeroBLL(int numero, float cantidadDinero, String fecha) {
+    public float comprobarNumeroBLL(String numero, float cantidadDinero, String fecha) {
 
         Connection _con;
         float premioFinalEuros = 0;
@@ -64,7 +64,7 @@ public class NavidadBLL {
      * @param cantidadDinero
      * @return
      */
-    private float obtenerPremiosSecundarios(int numero, String fecha, Connection _con, float cantidadDinero) {
+    private float obtenerPremiosSecundarios(String numero, String fecha, Connection _con, float cantidadDinero) {
 
         float premioFinalEuros = 0;
         float _premioCentimos;
@@ -76,8 +76,8 @@ public class NavidadBLL {
             Navidad_DAO _listaPremiosDAO = new Navidad_DAO();
             _listaNumeros = _listaPremiosDAO.listaPremiosSecundarios(_con, fecha);
 
-            /*Parseo String*/
-            String numeroVarchar = Integer.toString(numero);
+            /*Cambio de variable String*/
+            String numeroVarchar = numero;
             /*Centenas*/
             String centenas = numeroVarchar.substring(2);
             /*Dos ultimas cifras*/
@@ -156,7 +156,7 @@ public class NavidadBLL {
      * @param TipoPremio
      * @param fecha
      */
-    public void insertarNumeroBLL(int numero, float cantidadPremio, String fecha, String TipoPremio) {
+    public void insertarNumeroBLL(String numero, float cantidadPremio, String fecha, String TipoPremio) {
 
         Connection _con;
         try {
@@ -174,17 +174,15 @@ public class NavidadBLL {
  * Metodo que elimina de la base de datos
  * 
  * @param numero
- * @param cantidadPremio
  * @param fecha
- * @param TipoPremio 
  */
-    public void eliminarNumeroBLL(int numero, float cantidadPremio, String fecha, String TipoPremio) {
+    public void eliminarNumeroBLL(String numero, String fecha) {
       Connection _con;
         try {
             Connection_DB _conexion_DB = new Connection_DB();
             _con = _conexion_DB.AbrirConexion();
             Navidad_DAO _compruebaDAO = new Navidad_DAO();
-             _compruebaDAO.eliminarNumero(_con, numero, cantidadPremio, fecha ,TipoPremio);
+             _compruebaDAO.eliminarNumero(_con, numero, fecha );
             _conexion_DB.CerrarConexion(_con);
         } catch (Exception ex) {
             System.out.println("Excepcion->" + ex.getMessage());
@@ -213,4 +211,26 @@ public class NavidadBLL {
         }
         return _listaNumeros;
     }
+    
+    
+/**
+ * Metodo que busca por fecha
+ * 
+ * 
+ * @param _fecha
+ * @return 
+ */
+    public ArrayList<Navidad> buscarNumeroByFechaBLL(String _fecha) {
+   ArrayList<Navidad> _listaNumeros = null;
+        Connection _con;
+        try {
+            Connection_DB _conexion_DB = new Connection_DB();
+            _con = _conexion_DB.AbrirConexion();
+            Navidad_DAO _compruebaDAO = new Navidad_DAO();
+            _listaNumeros= _compruebaDAO.buscarNumeroFecha(_con, _fecha);
+            _conexion_DB.CerrarConexion(_con);
+        } catch (Exception ex) {
+            System.out.println("Excepcion->" + ex.getMessage());
+        }
+        return _listaNumeros;    }
 }

@@ -19,7 +19,7 @@ public class ResultadoNavidadCommand extends ICommand {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         
         /*Recuperamos el numero de navidad dado por el usuario y el dinero jugado*/  
-        int _numero_navidad = Integer.parseInt(request.getParameter("numeroDado"));
+        String _numero_navidad =request.getParameter("numeroDado");
         float _cantidad_jugada = Float.parseFloat(request.getParameter("cantidadDinero"));
         String _fecha = request.getParameter("fecha");
         NavidadBLL _navidadBLL=new NavidadBLL();

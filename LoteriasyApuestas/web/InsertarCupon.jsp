@@ -1,5 +1,7 @@
 
 
+<%@page import="Entidades.Cupon"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -43,16 +45,45 @@
                     <option value="TresCifras">Tres ultimas cifras</option>
                     <option value="DosCifras">Dos ultimas cifras</option>
                     <option value="UltimaCifra">Ultima cifra del primer premio</option>
-                    <option value="PrimeraCifra">Primera cifra del primer premio</option>                    
+                    <option value="PrimeraCifra">Primera cifra del primer premio</option>
+                    <option value="Serie">Serie</option>
                 </select> 
                 Premio en euros:<input type="number" name="cantidadDinero"  step="any"/>€
                 <input type="submit" value="Comprobar" />
-                <select name="fecha">
-                    <option value="2015-03-13">13-03-2015</option>
-                    <option value="2014-12-21">21-12-2014</option>
-                    <option value="2013-12-21">21-12-2013</option>
-                </select> 
+                 <input type="text" name="fecha" placeholder="yyyy-MM-dd"/>
+                <input type="radio" name="opcion" value="eliminar" />Eliminar
+                <input type="radio" name="opcion" value="anadir" />Añadir
             </form>
+                 <h4>Busqueda</h4>
+            <form action="Controller?opID=BuscarCupon" method="POST">
+                Buscar por numero: <input type="number" name="buscar"/> 
+                <input type="submit" value="buscar" />
+            </form> 
+             <form action="Controller?opID=BuscarFechaCupon" method="POST">
+                Buscar por fecha:
+                <input type="text" name="fecha" placeholder="yyyy-MM-dd"/>
+                <input type="submit" value="buscar" />
+            </form> 
+            <div class="results_table">
+            <table>
+                <tr> 
+                    <% ArrayList _lista = (ArrayList) request.getAttribute("NumerosBuscados");
+                        if (_lista != null) {
+                            for (int i = 0; i < _lista.size(); i++) {
+                                Cupon _numero = (Cupon) _lista.get(i);
+                    %>            
+                    <td><%=_numero.getNumero()%></td>
+                    <td><%=_numero.getNombre()%></td>  
+                    <td><%=_numero.getPremios()%></td>
+                    <td><%=_numero.getFecha()%></td> 
+                </tr>
+                    <%
+                            }
+                        }
+                    %>
+                
+            </table>
+            </div>
             </div>
         </div>
     </body>

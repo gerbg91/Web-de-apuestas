@@ -1,7 +1,7 @@
 package Presentation.Command;
 
-import BLL.NinoBLL;
-import Entidades.Nino;
+import BLL.CuponBLL;
+import Entidades.Cupon;
 import java.util.ArrayList;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,17 +12,17 @@ import javax.servlet.http.HttpServletResponse;
  * 
  * @author Ger 
  */
-@WebServlet(name = "BuscarNinoCommand", urlPatterns = {"/BuscarNinoCommand"})
-public class BuscarNinoCommand extends ICommand {
+@WebServlet(name = "BuscarCuponCommand", urlPatterns = {"/BuscarCuponCommand"})
+public class BuscarCuponCommand extends ICommand {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        ArrayList<Nino> _listaNumeros = null;
+        ArrayList<Cupon> _listaNumeros = null;
         int _numero_busqueda = Integer.parseInt(request.getParameter("buscar"));
-        NinoBLL _ninoBLL = new NinoBLL();
-        _listaNumeros = _ninoBLL.buscarNumeroBLL(_numero_busqueda);
+        CuponBLL _cuponBLL = new CuponBLL();
+        _listaNumeros = _cuponBLL.buscarNumeroBLL(_numero_busqueda);
         request.setAttribute("NumerosBuscados", _listaNumeros);
-        return "/InsertarNino.jsp";
+        return "/InsertarCupon.jsp";
 
     }
 }

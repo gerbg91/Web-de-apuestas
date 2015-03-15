@@ -18,8 +18,7 @@ public class ResultadoCuponCommand extends ICommand {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         
-        /*Recuperamos el numero de navidad dado por el usuario y el dinero jugado*/  
-        int _numero_cupon = Integer.parseInt(request.getParameter("numeroDado"));
+        String _numero_cupon = request.getParameter("numeroDado");
         int _numero_serie = Integer.parseInt(request.getParameter("serieDado"));
         String _fecha = request.getParameter("fecha");
         CuponBLL _cuponBLL=new CuponBLL();

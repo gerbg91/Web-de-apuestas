@@ -18,9 +18,7 @@
             Cantidad en dinero:<input type="number" name="cantidadDinero"  step="any"/>€
             <input type="submit" value="Comprobar" />
             <select name="fecha">
-                    <option value="2015-03-13">13-03-2015</option>
-                    <option value="2014-12-21">21-12-2014</option>
-                    <option value="2013-12-21">21-12-2013</option>
+                <option value="2015-01-06">06-06-2015</option>
             </select> 
             </form>
         </div>

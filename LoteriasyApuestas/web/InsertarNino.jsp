@@ -34,20 +34,26 @@
                     <option value="PrimerPremio">Primer Premio</option>
                     <option value="SegundoPremio">Segundo Premio</option>
                     <option value="TercerPremio">Tercer Premio</option>
+                    <option value="TerminacionCuatroCifras">Tercer Premio</option>
+                    <option value="TerminacionDosCifras">Tercer Premio</option>
+                    <option value="TerminacionUltimaCifra">Terminacion ultima cifra del primer premio</option>
+                    <option value="PrimeraCifraPrimero">Primera cifra del primer premio</option>
+                    <option value="PrimeraCifraSegundo">Primera cifra del segundo premio</option>
                 </select> 
                 Premio en euros:<input type="number" name="cantidadDinero"  step="any"/>€
                 <input type="submit" value="Comprobar" />
-                <select name="fecha">
-                    <option value="2015-03-08">08-03-2015</option>
-                    <option value="2014-12-21">21-12-2014</option>
-                    <option value="2013-12-21">21-12-2013</option>
-                </select> 
+                <input type="text" name="fecha" placeholder="yyyy-MM-dd"/>
                 <input type="radio" name="opcion" value="eliminar" />Eliminar
                 <input type="radio" name="opcion" value="anadir" />Añadir
             </form>
             <h4>Busqueda</h4>
             <form action="Controller?opID=BuscarNino" method="POST">
                 Buscar por numero: <input type="number" name="buscar"/> 
+                <input type="submit" value="buscar" />
+            </form> 
+             <form action="Controller?opID=BuscarFechaNino" method="POST">
+                Buscar por fecha:
+                <input type="text" name="fecha" placeholder="yyyy-MM-dd"/> 
                 <input type="submit" value="buscar" />
             </form> 
             <div class="results_table">
