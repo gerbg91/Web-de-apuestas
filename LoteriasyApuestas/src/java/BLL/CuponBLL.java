@@ -25,7 +25,7 @@ public class CuponBLL {
      * @param fecha
      * @return
      */
-    public float comprobarNumeroBLL(String numero, int numeroSerie, String fecha) {
+    public float comprobarNumeroBLL(String numero, String numeroSerie, String fecha) {
 
         Connection _con;
         ArrayList<Cupon> _numerosPremiados;
@@ -37,7 +37,6 @@ public class CuponBLL {
 
             /*Cambio de variable*/
             String numeroVarchar = numero;
-            String serie = Integer.toString(numeroSerie);
             /*Cuatro cifras*/
             String cuatroCifras = numeroVarchar.substring(1);
             /*Tres cifras*/
@@ -50,8 +49,10 @@ public class CuponBLL {
             String primeraCifra = numeroVarchar.substring(0, 1);
 
             _numerosPremiados = _compruebaDAO.comprobarNumero(_con, fecha);
-            if (!_numerosPremiados.get(0).getNumero().equals(numeroVarchar) & !_numerosPremiados.get(8).getNumero().equals(serie)) {
-                if (_numerosPremiados.get(0).getNumero().equals(numeroVarchar)) {
+            if (_numerosPremiados.get(0).getNumero().equals(numeroVarchar) & _numerosPremiados.get(8).getNumero().equals(numeroSerie)) {
+               premioFinal = _numerosPremiados.get(8).getPremios()+123456789;
+            } else {
+                 if (_numerosPremiados.get(0).getNumero().equals(numeroVarchar)) {
                     premioFinal = _numerosPremiados.get(0).getPremios();
                 } else if (_numerosPremiados.get(1).getNumero().equals(numeroVarchar)) {
                     premioFinal = _numerosPremiados.get(1).getPremios();
@@ -68,8 +69,6 @@ public class CuponBLL {
                 } else if (_numerosPremiados.get(7).getNumero().equals(primeraCifra)) {
                     premioFinal = _numerosPremiados.get(7).getPremios();
                 }
-            } else {
-                premioFinal = (float) 3000.0;
             }
             _conexion_DB.CerrarConexion(_con);
         } catch (Exception ex) {

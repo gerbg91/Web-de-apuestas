@@ -172,11 +172,53 @@ p {
     position: absolute;
 }
 
-/*slider*/
+/*Publicidad*/
 .slider{
     background: none repeat scroll 0 0 red;
     height: 200px;
     margin: 0 34px 30px 0;
+}
+
+/*Escena Resultado*/
+
+.result_left{
+    background-color: red;
+    float: left;
+    height: 100%;
+    width: 12%;  
+}
+
+.results{
+    float: left;  
+    height: 100%;
+    width: 71%;
+}
+
+.result_right{
+    background-color: red;
+    float: left;
+    height: 100%;
+    width: 12%;
+}
+
+/*Escena de comprobaciones*/
+.publi_comprobacion{
+    background-color: red;
+    width: 95%;
+    height: 20%;
+}
+
+.comprobacion{
+    background-color: aliceblue;
+    margin-top: 5%;
+    width: 95%;
+}
+
+.publicidad_web{
+    background: none repeat scroll 0 0 yellow;
+    height: 45%;
+    margin-top: 5%;
+    width: 95%;
 }
 
 /*Footer*/

@@ -12,7 +12,8 @@
         <title>Inicio</title>
     </head>
     <body>         
-        <div id="search_section">
+        <div class="publi_comprobacion">Publicidad</div>
+        <div class="comprobacion">
              <form action="Controller?opID=ResultadoCupon" method="POST">
             Numero:<input type="number" name="numeroDado"/>
             Serie:<input type="number" name="serieDado"/>
@@ -24,6 +25,7 @@
             </select> 
             </form>
         </div>
+        <div class="publicidad_web">Publicidad Web</div>
     </body>
 </html>
 

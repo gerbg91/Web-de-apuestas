@@ -11,9 +11,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Inicio</title>
     </head>
-    <body>         
-        <div id="search_section">
-            
+    <body>        
+        <div class="publi_comprobacion">Publicidad</div>
+        <div class="comprobacion">
             <form action="Controller?opID=ResultadoNavidad" method="POST">
             Numero:<input type="number" name="numeroDado"/>
             Cantidad en dinero:<input type="number" name="cantidadDinero"  step="any"/>€
@@ -24,5 +24,6 @@
             </select> 
             </form>
         </div>
+          <div class="publicidad_web">Publicidad Web</div>
     </body>
 </html>
