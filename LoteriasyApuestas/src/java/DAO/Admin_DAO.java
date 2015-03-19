@@ -10,7 +10,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -18,7 +17,15 @@ import java.util.ArrayList;
  * @author Ger
  */
 public class Admin_DAO {
-
+    
+/**
+ * Metodo que verifica el usuario
+ * 
+ * @param _con
+ * @param _usuario
+ * @return
+ * @throws Exception 
+ */
     public ArrayList<Administrador> verificarUsuario(Connection _con, String _usuario) throws Exception {
          ArrayList<Administrador> _administrador = new ArrayList();
         ResultSet rs = null;

@@ -114,7 +114,7 @@ public class Cupon_DAO {
         ResultSet rs = null;
         PreparedStatement stmt = null;
         try {
-            stmt = _con.prepareStatement("select * from cupon where historico=?");
+            stmt = _con.prepareStatement("select * from cupon where numero=?");
             stmt.setString(1, Integer.toString(_numero_busqueda));
             rs = stmt.executeQuery();
             Cupon _numeros = null;

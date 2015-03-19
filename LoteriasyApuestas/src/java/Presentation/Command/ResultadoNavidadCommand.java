@@ -21,7 +21,7 @@ public class ResultadoNavidadCommand extends ICommand {
         /*Recuperamos el numero de navidad dado por el usuario y el dinero jugado*/  
         String _numero_navidad =request.getParameter("numeroDado");
         float _cantidad_jugada = Float.parseFloat(request.getParameter("cantidadDinero"));
-        String _fecha = request.getParameter("fecha");
+        String _fecha = request.getParameter("ingreso");
         NavidadBLL _navidadBLL=new NavidadBLL();
         request.setAttribute("Premio", _navidadBLL.comprobarNumeroBLL(_numero_navidad,_cantidad_jugada, _fecha));
         return "/Resultado.jsp";

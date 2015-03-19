@@ -20,7 +20,7 @@ public class ResultadoNinoCommand extends ICommand {
         
         String _numero_nino = request.getParameter("numeroDado");
         float _cantidad_jugada = Float.parseFloat(request.getParameter("cantidadDinero"));
-        String _fecha = request.getParameter("fecha");
+        String _fecha = request.getParameter("ingreso");
         NinoBLL _ninoBLL=new NinoBLL();
         request.setAttribute("Premio", _ninoBLL.comprobarNumeroBLL(_numero_nino,_cantidad_jugada, _fecha));
         return "/Resultado.jsp";

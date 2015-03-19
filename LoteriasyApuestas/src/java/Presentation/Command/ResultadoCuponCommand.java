@@ -20,7 +20,7 @@ public class ResultadoCuponCommand extends ICommand {
         
         String _numero_cupon = request.getParameter("numeroDado");
         String _numero_serie = request.getParameter("serieDado");
-        String _fecha = request.getParameter("fecha");
+        String _fecha = request.getParameter("ingreso");
         CuponBLL _cuponBLL=new CuponBLL();
         request.setAttribute("Premio", _cuponBLL.comprobarNumeroBLL(_numero_cupon,_numero_serie, _fecha));
         return "/Resultado.jsp";
