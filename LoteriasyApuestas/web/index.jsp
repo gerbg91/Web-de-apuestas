@@ -7,7 +7,12 @@
     </head>
     <body>
         <div id="templatemo_container">
-            <div id="templatemo_banner"></div>
+            <div id="templatemo_banner">
+                <div id="trebol_banner"><p>Loterías y Apuestas</p></div> 
+               <div class="titulo_banner"><p></p></div> 
+            </div>
+            
+            
             <div><a href="Controller?opID=Login" class="icon-cog" id="setting" ></a></div>
             <div id="templatemo_content_top">            
                 <% String paginaprincipal = (String) request.getAttribute("paginaprincipal");
@@ -17,6 +22,13 @@
                 <jsp:include page='PrincipalEleccion.jsp' />
                 <%}%>     
             </div> 
+             <div id="icons">
+                <ul>
+                    <li><a id="red" href="#"></a></li>
+                    <li><a id="fac" href="#"></a></li>
+                    <li><a id="twi" href="#"></a></li>
+                </ul>
+            </div>
             <div id="templatemo_footer">
                 <ul class="footer_list">
                     <li><a href="#">Home</a></li>

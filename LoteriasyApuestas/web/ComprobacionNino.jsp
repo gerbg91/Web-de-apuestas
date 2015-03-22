@@ -20,13 +20,20 @@
         <div class="comprobacion">
              <form action="Controller?opID=ResultadoNino" method="POST">
             Numero:<input type="number" name="numeroDado"/>
-            Cantidad en dinero:<input type="number" name="cantidadDinero"  step="any"/>€
-            <input type="submit" value="Comprobar" />
+            Cantidad en euros:<input type="number" name="cantidadDinero"  step="any"/>€
+            Fecha del Sorteo:
             <input type="text" name="ingreso" id="ingreso" value="yyyy-mm-dd" />
             <img src="css/images/calendario.png" width="16" height="16" border="0" title="Fecha Inicial" id="lanzador"> 
+            <input type="submit" value="Comprobar" />
             </form>
         </div>
-        <div class="publicidad_web">Publicidad Web</div>
+        <div class="publicidad_web">
+            <div class="text_publicidad">
+                <p class="p1">Siguenos ahora en Facebook o Twitter</p>
+                <p class="p2">Y recuerda que la <b class="b1">SUERTE</b><a class="trebol"></a></p> 
+                <p class="p3">esta siempre de nuestra parte.</p>
+            </div>             
+        </div>
           <script type="text/javascript">
             Calendar.setup({
                 inputField: "ingreso",
