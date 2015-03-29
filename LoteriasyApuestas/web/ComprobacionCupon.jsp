@@ -15,7 +15,8 @@
         <script src="js/calendar-es.js" type="text/javascript"></script>
         <script src="js/calendar-setup.js" type="text/javascript"></script> 
     </head>
-    <body>         
+    <body>  
+        
         <div class="publi_comprobacion">Publicidad</div>
         <div class="comprobacion">
             <form action="Controller?opID=ResultadoCupon" method="POST">
