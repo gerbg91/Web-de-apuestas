@@ -21,7 +21,7 @@
         <a class="botonComprobar"  href="Controller?opID=Navidad">COMPRUEBA</a>
             <div class="rigth">
                 <p>Próximo sorteo</p> 
-                <p>Día 6 Sabado de 2016</p>
+                <p>22 de diciembre de 2015</p>
             </div>
         </div>     
         
@@ -34,7 +34,7 @@
         <a class="botonComprobar"  href="Controller?opID=Nino">COMPRUEBA</a>
             <div class="rigth">
                 <p>Próximo sorteo</p> 
-                <p>Día 6 Sabado de 2016</p>
+                <p>6 de enero de 2016</p>
             </div>
         </div>
     </div>
@@ -46,7 +46,7 @@
         <a class="botonComprobar"  href="Controller?opID=Cupon">COMPRUEBA</a>  
             <div class="rigth">
                 <p>Próximo sorteo</p> 
-                <p>Día 6 lunes de 2016</p>
+                <p>18 de mayo de 2015</p>
             </div>
         </div>
     </div>

@@ -19,13 +19,13 @@
     <body>        
         <div class="publi_comprobacion">Publicidad</div>
         <div class="comprobacion">
-            <form action="Controller?opID=ResultadoNavidad" method="POST">
-                Numero:<input type="number" name="numeroDado"/>
-                Cantidad en euros:<input type="number" name="cantidadDinero"  step="any"/>€
+            <form action="Controller?opID=ResultadoNavidad" method="POST" class="form_compro">
+                Numero:<input type="number" name="numeroDado" required = "required"/>
+                Cantidad en euros:<input type="number" name="cantidadDinero"  step="any" required = "required"/>€
                 Fecha del Sorteo:
-                <input type="text" name="ingreso" id="ingreso" value="yyyy-mm-dd" />
+                <input type="text" name="ingreso" id="ingreso" placeholder="yyyy-mm-dd" required = "required"/>
                 <img src="css/images/calendario.png" width="16" height="16" border="0" title="Fecha Inicial" id="lanzador"> 
-                <input type="submit" value="Comprobar" />
+                <input class="botonComprobar1" type="submit" value="COMPRUEBA"/>
             </form>
         </div>
         <div class="publicidad_web">
