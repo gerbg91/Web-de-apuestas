@@ -260,25 +260,25 @@ p {
 
 .pobre{
     background-image: url("images/triste.png");
-    width: 153px;
-    height: 217px;
-    margin-left: 200px;
+    width: 555px;
+    height: 282px;
+    margin-left: 20px;
     margin-top: 5px;
 }
 
 .feliz{
     background-image: url("images/feliz.png");
-    width: 172px;
-    height: 238px;
-    margin-left: 200px;
+    width: 450px;
+    height: 270px;
+    margin-left: 29px;
     margin-top: 20px;
 }
 
 .rico{
     background-image: url("images/millonario.png");
-    width: 215px;
-    height: 210px;
-    margin-left: 195px;
+    width: 420px;
+    height: 250px;
+    margin-left: 15px;
     margin-top: 20px;
 }
 

@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `cupon`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cupon` (
-  `id_Navidad` int(100) NOT NULL AUTO_INCREMENT,
+  `id_Cupon` int(100) NOT NULL AUTO_INCREMENT,
   `numero` varchar(50) DEFAULT NULL,
   `nombre` varchar(50) DEFAULT NULL,
   `historico` date DEFAULT NULL,
