@@ -27,7 +27,27 @@
                 <br>
                 -En todos se debera colocar la cantidad el premio en euros, la cantidad en premios sera en relacion a un euro jugado.
             </div>
-
+            
+            <h4>Elimina un número</h4>
+            <form action="Controller?opID=InsertarNinoEliminar" method="POST">
+                Numero:<input type="number" name="numeroDado"/>
+                <select name="TipoLoteria">
+                    <option value="PrimerPremio">Primer Premio</option>
+                    <option value="SegundoPremio">Segundo Premio</option>
+                    <option value="TercerPremio">Tercer Premio</option>
+                    <option value="TerminacionCuatroCifras">Tercer Premio</option>
+                    <option value="TerminacionDosCifras">Tercer Premio</option>
+                    <option value="TerminacionUltimaCifra">Terminacion ultima cifra del primer premio</option>
+                    <option value="PrimeraCifraPrimero">Primera cifra del primer premio</option>
+                    <option value="PrimeraCifraSegundo">Primera cifra del segundo premio</option>
+                </select> 
+                <br><input type="text" name="ingreso" id="ingreso" placeholder="yyyy-mm-dd" required = "required"/>
+                 <img src="css/images/calendario.png" width="16" height="16" border="0" title="Fecha Inicial" id="lanzador"> 
+                <input type="submit" value="Comprobar" />
+       
+            </form>
+            
+            <h4>Añadir un número</h4>
             <form action="Controller?opID=InsertarNino" method="POST">
                 Numero:<input type="number" name="numeroDado"/>
                 <select name="TipoLoteria">
@@ -40,11 +60,10 @@
                     <option value="PrimeraCifraPrimero">Primera cifra del primer premio</option>
                     <option value="PrimeraCifraSegundo">Primera cifra del segundo premio</option>
                 </select> 
-                Premio en euros:<input type="number" name="cantidadDinero"  step="any"/>€
-                <input type="submit" value="Comprobar" />
-                <input type="text" name="fecha" placeholder="yyyy-MM-dd"/>
-                <input type="radio" name="opcion" value="eliminar" />Eliminar
-                <input type="radio" name="opcion" value="anadir" />Añadir
+                <br><input type="text" name="ingreso" id="ingreso" placeholder="yyyy-mm-dd" required = "required"/>
+                 <img src="css/images/calendario.png" width="16" height="16" border="0" title="Fecha Inicial" id="lanzador"> 
+                Cantidad en euros:<input type="number" name="cantidadDinero"  step="any" required = "required"/>€
+                 <input type="submit" value="Comprobar" />
             </form>
             <h4>Busqueda</h4>
             <form action="Controller?opID=BuscarNino" method="POST">

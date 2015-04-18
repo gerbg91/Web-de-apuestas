@@ -34,6 +34,27 @@
                 <br>
                 -En relacion a los a los numeros introducidos se debe colocar su premio en euros.
             </div>
+            <h4>Eliminar un numero</h4>
+            <div class="form">  
+            <form action="Controller?opID=InsertarCuponEliminar" method="POST">
+                Numero:<input type="number" name="numeroDado"/>
+                <select name="TipoLoteria">
+                    <option value="CincoCifras">Cinco Cifras</option>
+                    <option value="CincoCifrasAnterior"> Cinco cifras anterior</option>
+                    <option value="CincoPosterior">Cinco cifras posterior</option>
+                    <option value="CuatroCifras">Cuatro ultimas cifras</option>
+                    <option value="TresCifras">Tres ultimas cifras</option>
+                    <option value="DosCifras">Dos ultimas cifras</option>
+                    <option value="UltimaCifra">Ultima cifra del primer premio</option>
+                    <option value="PrimeraCifra">Primera cifra del primer premio</option>
+                    <option value="Serie">Serie</option>
+                </select> 
+ <input type="text" name="ingreso" id="ingreso" placeholder="yyyy-mm-dd" required = "required"/>
+                <img src="css/images/calendario.png" width="16" height="16" border="0" title="Fecha Inicial" id="lanzador">
+                <input type="submit" value="Comprobar" />
+            </form>
+                
+                 <h4>Añadir un numero</h4>
             <div class="form">  
             <form action="Controller?opID=InsertarCupon" method="POST">
                 Numero:<input type="number" name="numeroDado"/>
@@ -48,12 +69,13 @@
                     <option value="PrimeraCifra">Primera cifra del primer premio</option>
                     <option value="Serie">Serie</option>
                 </select> 
+                <input type="text" name="ingreso" id="ingreso" placeholder="yyyy-mm-dd" required = "required"/>
+                <img src="css/images/calendario.png" width="16" height="16" border="0" title="Fecha Inicial" id="lanzador">
                 Premio en euros:<input type="number" name="cantidadDinero"  step="any"/>€
+                
                 <input type="submit" value="Comprobar" />
-                 <input type="text" name="fecha" placeholder="yyyy-MM-dd"/>
-                <input type="radio" name="opcion" value="eliminar" />Eliminar
-                <input type="radio" name="opcion" value="anadir" />Añadir
             </form>
+                
                  <h4>Busqueda</h4>
             <form action="Controller?opID=BuscarCupon" method="POST">
                 Buscar por numero: <input type="number" name="buscar"/> 

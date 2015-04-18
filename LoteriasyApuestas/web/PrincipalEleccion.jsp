@@ -8,8 +8,8 @@
 <!DOCTYPE html>
 <html>
     <body>
-    <div class="container_global">       
-        <div class="slider">
+        
+        <div class="div_publicidad">
             Publicidad
         </div>    
         
@@ -50,6 +50,5 @@
             </div>
         </div>
     </div>
-        </div>
 </body>
 </html>

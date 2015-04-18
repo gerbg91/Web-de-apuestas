@@ -22,6 +22,8 @@
                 <jsp:include page='PrincipalEleccion.jsp' />
                 <%}%>     
             </div> 
+            
+            <% if(paginaprincipal !="/InsertarNavidad.jsp" && paginaprincipal !="/InsertarCupon.jsp" && paginaprincipal !="/InsertarNino.jsp") {%>
              <div id="icons">
                 <ul>
                     <li><a id="red" href="#"></a></li>
@@ -41,6 +43,7 @@
                 <div class="margin_bottom_20"></div>
             </div>
             <div class="cleaner"></div> 
-        </div>       
+        </div>   
+             <%}%> 
     </body>
 </html>
