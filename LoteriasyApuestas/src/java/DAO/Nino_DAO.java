@@ -102,6 +102,7 @@ public class Nino_DAO {
      * @throws SQLException
      */
     private Nino obtenNumeros(ResultSet rs, Nino numeros) throws SQLException {
+        numeros.setId_Nino(rs.getInt("id_Nino"));
         numeros.setNumero(rs.getString("numero"));
         numeros.setNombre(rs.getString("nombre"));
         numeros.setFecha(rs.getDate("historico"));
@@ -219,6 +220,38 @@ public class Nino_DAO {
         try {
             stmt = _con.prepareStatement("select * from nino where historico=?");
             stmt.setString(1,_fecha);
+            rs = stmt.executeQuery();
+            Nino _numeros = null;
+            while (rs.next()) {
+                _numeros = new Nino();
+                _listaNumeros.add(obtenNumeros(rs, _numeros));
+            }
+        } catch (SQLException ex) {
+            throw new Exception("Ha habido un problema al buscar los numeros en la BD " + ex.getMessage());
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+        return _listaNumeros;
+    
+    }
+
+     /**
+     * Metodo que busca luna lista de numeros
+     * 
+     * @param _con
+     * @return 
+     */
+    public ArrayList<Nino> listaNumeros(Connection _con) throws Exception {
+    ArrayList<Nino> _listaNumeros = new ArrayList();
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+        try {
+            stmt = _con.prepareStatement("Select * from nino where nombre=\"PrimerPremio\" or nombre=\"SegundoPremio\" or nombre=\"TerminacionCuatroCifras\" or nombre=\"TerminacionTresCifras\" or nombre=\"TerminacionDosCifras\" or nombre=\"TerminacionUltimaCifra\" or nombre=\"PrimeraCifraPrimero\" or nombre=\"PrimeraCifraSegundo\" order by premios desc,historico asc;");
             rs = stmt.executeQuery();
             Nino _numeros = null;
             while (rs.next()) {

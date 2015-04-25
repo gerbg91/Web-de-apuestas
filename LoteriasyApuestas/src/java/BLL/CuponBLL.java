@@ -49,8 +49,8 @@ public class CuponBLL {
             String primeraCifra = numeroVarchar.substring(0, 1);
 
             _numerosPremiados = _compruebaDAO.comprobarNumero(_con, fecha);
-            if (_numerosPremiados.get(0).getNumero().equals(numeroVarchar) & _numerosPremiados.get(8).getNumero().equals(numeroSerie)) {
-               premioFinal = _numerosPremiados.get(8).getPremios()+123456789;
+            if (_numerosPremiados.get(0).getNumero().equals(numeroVarchar) & _numerosPremiados.get(7).getNumero().equals(numeroSerie)) {
+               premioFinal = _numerosPremiados.get(7).getPremios()+123456789;
             } else {
                  if (_numerosPremiados.get(0).getNumero().equals(numeroVarchar)) {
                     premioFinal = _numerosPremiados.get(0).getPremios();
@@ -158,5 +158,26 @@ public class CuponBLL {
         } catch (Exception ex) {
             System.out.println("Excepcion->" + ex.getMessage());
         }
+    }
+
+  /**
+ * Metodo que busca en la base de datos el numero by fecha
+ * 
+ * @return 
+ */
+    public ArrayList<Cupon> listaNumeros() {
+ ArrayList<Cupon> _listaNumeros = null;
+        Connection _con;
+        try {
+            Connection_DB _conexion_DB = new Connection_DB();
+            _con = _conexion_DB.AbrirConexion();
+            Cupon_DAO _compruebaDAO = new Cupon_DAO();
+            _listaNumeros= _compruebaDAO.listaNumeros(_con);
+            _conexion_DB.CerrarConexion(_con);
+        } catch (Exception ex) {
+            System.out.println("Excepcion->" + ex.getMessage());
+        }
+        return _listaNumeros;
+    
     }
 }

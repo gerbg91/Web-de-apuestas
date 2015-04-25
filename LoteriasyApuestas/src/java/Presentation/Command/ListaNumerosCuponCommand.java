@@ -1,7 +1,7 @@
 
 package Presentation.Command;
 
-import BLL.NavidadBLL;
+import BLL.CuponBLL;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet que accede a la logica de negocio BLL
  * Recupera la lista de los numeros en la BD
  */
-@WebServlet(name = "PagNavidadCommand", urlPatterns = {"/PagNavidadCommand"})
-public class PagNavidadCommand extends ICommand {
+@WebServlet(name = "ListaNumerosCuponCommand", urlPatterns = {"/ListaNumerosCuponCommand"})
+public class ListaNumerosCuponCommand extends ICommand {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-          NavidadBLL _listaNumerosBLL = new NavidadBLL();  
+          CuponBLL _listaNumerosBLL = new CuponBLL();  
           request.setAttribute("_listaNumeros", _listaNumerosBLL.listaNumeros());
-        return "/InsertarNavidad.jsp";
+        return "/ListaResultadosCupon.jsp";
     }
 }

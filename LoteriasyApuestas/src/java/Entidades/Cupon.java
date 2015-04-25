@@ -13,6 +13,7 @@ import java.sql.Date;
  */
 public class Cupon {
     
+    private int id_Cupon;
     private String numero;
     private String nombre;
     private Date fecha;
@@ -72,5 +73,19 @@ public class Cupon {
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    /**
+     * @return the id_Cupon
+     */
+    public int getId_Cupon() {
+        return id_Cupon;
+    }
+
+    /**
+     * @param id_Cupon the id_Cupon to set
+     */
+    public void setId_Cupon(int id_Cupon) {
+        this.id_Cupon = id_Cupon;
     }
 }

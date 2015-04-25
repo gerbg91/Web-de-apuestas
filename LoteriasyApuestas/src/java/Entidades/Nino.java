@@ -13,6 +13,7 @@ import java.sql.Date;
  */
 public class Nino {
 
+    private int id_Nino;    
     private String numero;
     private String nombre;
     private Date fecha;
@@ -72,6 +73,20 @@ public class Nino {
      */
     public void setPremios(float premios) {
         this.premios = premios;
+    }
+
+    /**
+     * @return the id_Nino
+     */
+    public int getId_Nino() {
+        return id_Nino;
+    }
+
+    /**
+     * @param id_Nino the id_Nino to set
+     */
+    public void setId_Nino(int id_Nino) {
+        this.id_Nino = id_Nino;
     }
     
 }

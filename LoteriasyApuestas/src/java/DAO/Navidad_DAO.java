@@ -101,6 +101,7 @@ public class Navidad_DAO {
      * @throws SQLException
      */
     private Navidad obtenNumeros(ResultSet rs, Navidad numeros) throws SQLException {
+        numeros.setId_Navidad(rs.getInt("id_Navidad"));
         numeros.setNumero(rs.getString("numero"));
         numeros.setNombre(rs.getString("nombre"));
         numeros.setFecha(rs.getDate("historico"));
@@ -217,6 +218,38 @@ public class Navidad_DAO {
         try {
             stmt = _con.prepareStatement("select * from navidad where historico=?");
             stmt.setString(1,_fecha);
+            rs = stmt.executeQuery();
+            Navidad _numeros = null;
+            while (rs.next()) {
+                _numeros = new Navidad();
+                _listaNumeros.add(obtenNumeros(rs, _numeros));
+            }
+        } catch (SQLException ex) {
+            throw new Exception("Ha habido un problema al buscar los numeros en la BD " + ex.getMessage());
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+        return _listaNumeros;
+    }
+    
+    
+    /**
+     * Metodo que recupera todos los numeros
+     * 
+     * @param _con
+     * @return 
+     */
+    public ArrayList<Navidad> listaNumero(Connection _con) throws Exception {
+        ArrayList<Navidad> _listaNumeros = new ArrayList();
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+        try {
+            stmt = _con.prepareStatement("select * from navidad where nombre=\"PrimerPremio\" or nombre=\"SegundoPremio\" or nombre=\"TercerPremio\" or nombre=\"CuartoPremio\" or nombre=\"QuintoPremio\" or nombre=\"Pedrea\" or nombre=\"PrimerPremioAprox\" or nombre=\"SegundoPremioAprox\" or nombre=\"TercerPremioAprox\" order by premios desc, historico asc;");
             rs = stmt.executeQuery();
             Navidad _numeros = null;
             while (rs.next()) {

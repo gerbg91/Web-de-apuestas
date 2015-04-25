@@ -13,7 +13,8 @@ import java.sql.Date;
  * @author Ger
  */
 public class Navidad {
-
+    
+    private int id_Navidad;
     private String numero;
     private String nombre;
     private Date fecha;
@@ -73,5 +74,19 @@ public class Navidad {
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    /**
+     * @return the id_Navidad
+     */
+    public int getId_Navidad() {
+        return id_Navidad;
+    }
+
+    /**
+     * @param id_Navidad the id_Navidad to set
+     */
+    public void setId_Navidad(int id_Navidad) {
+        this.id_Navidad = id_Navidad;
     }
 }

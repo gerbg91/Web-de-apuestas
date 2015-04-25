@@ -4,6 +4,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Loterias Y Apuestas</title>
         <link href="css/templatemo_style.css" rel="stylesheet" type="text/css"/>     
+        <link href="css/calendario.css" type="text/css" rel="stylesheet">
+        <script src="js/calendar.js" type="text/javascript"></script>
+        <script src="js/calendar-es.js" type="text/javascript"></script>
+        <script src="js/calendar-setup.js" type="text/javascript"></script> 
     </head>
     <body>
         <div id="templatemo_container">
@@ -24,13 +28,14 @@
             </div> 
             
             <% if(paginaprincipal !="/InsertarNavidad.jsp" && paginaprincipal !="/InsertarCupon.jsp" && paginaprincipal !="/InsertarNino.jsp") {%>
-             <div id="icons">
+           <!--  <div id="icons">
                 <ul>
                     <li><a id="red" href="#"></a></li>
                     <li><a id="fac" href="#"></a></li>
                     <li><a id="twi" href="#"></a></li>
                 </ul>
-            </div>
+            </div> -->
+          <div class="margin_bottom_1"></div>
             <div id="templatemo_footer">
                 <ul class="footer_list">
                     <li><a href="#">Home</a></li>
@@ -40,9 +45,8 @@
                 </ul> 
                 <div class="margin_bottom_10"></div>
                 Copyright © 2024 <a href="#">R.Ger Company</a> | Designed by <a href="http://www.templatemo.com" target="_parent">Free CSS Templates</a>
-                <div class="margin_bottom_20"></div>
             </div>
-            <div class="cleaner"></div> 
+         
         </div>   
              <%}%> 
     </body>

@@ -233,4 +233,25 @@ public class NavidadBLL {
             System.out.println("Excepcion->" + ex.getMessage());
         }
         return _listaNumeros;    }
+    
+    /**
+     * Metodo que recupera la lista de numeros premiados
+     * 
+     * @return 
+     */
+    public ArrayList<Navidad> listaNumeros() {
+      
+        ArrayList<Navidad> _listaNumeros = null;
+        Connection _con;
+        try {
+            Connection_DB _conexion_DB = new Connection_DB();
+            _con = _conexion_DB.AbrirConexion();
+            Navidad_DAO _listaDAO = new Navidad_DAO();
+            _listaNumeros= _listaDAO.listaNumero(_con);
+            _conexion_DB.CerrarConexion(_con);
+        } catch (Exception ex) {
+            System.out.println("Excepcion->" + ex.getMessage());
+        }
+        return _listaNumeros;
+    }
 }

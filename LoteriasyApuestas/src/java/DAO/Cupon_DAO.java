@@ -62,6 +62,7 @@ public class Cupon_DAO {
      * @throws SQLException
      */
     private Cupon obtenNumeros(ResultSet rs, Cupon numeros) throws SQLException {
+        numeros.setId_Cupon(rs.getInt("id_Cupon"));
         numeros.setNumero(rs.getString("numero"));
         numeros.setNombre(rs.getString("nombre"));
         numeros.setFecha(rs.getDate("historico"));
@@ -195,5 +196,37 @@ public class Cupon_DAO {
                 stmt.close();
             }
         }
+    }
+
+  /**
+     * Metodo que busca en la base de datos por fecha
+     *
+     * @param _con
+     * @return
+     * @throws java.lang.Exception
+     */
+    public ArrayList<Cupon> listaNumeros(Connection _con) throws Exception {
+        ArrayList<Cupon> _listaNumeros = new ArrayList();
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+        try {
+            stmt = _con.prepareStatement("select * from cupon where nombre=\"CincoCifras\" order by historico desc;");
+            rs = stmt.executeQuery();
+            Cupon _numeros = null;
+            while (rs.next()) {
+                _numeros = new Cupon();
+                _listaNumeros.add(obtenNumeros(rs, _numeros));
+            }
+        } catch (SQLException ex) {
+            throw new Exception("Ha habido un problema al buscar los numeros en la BD " + ex.getMessage());
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+        return _listaNumeros;
     }
 }

@@ -6,7 +6,9 @@
 package BLL;
 
 import DAO.Connection_DB;
+import DAO.Navidad_DAO;
 import DAO.Nino_DAO;
+import Entidades.Navidad;
 import Entidades.Nino;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -216,6 +218,27 @@ public class NinoBLL {
         }
         return _listaNumeros;
     
+    }
+
+    /**
+     * Metodo que recupera la lista de numeros premiados
+     * 
+     * @return 
+     */
+    public ArrayList<Nino> listaNumeros() {
+      
+        ArrayList<Nino> _listaNumeros = null;
+        Connection _con;
+        try {
+            Connection_DB _conexion_DB = new Connection_DB();
+            _con = _conexion_DB.AbrirConexion();
+            Nino_DAO _listaDAO = new Nino_DAO();
+            _listaNumeros= _listaDAO.listaNumeros(_con);
+            _conexion_DB.CerrarConexion(_con);
+        } catch (Exception ex) {
+            System.out.println("Excepcion->" + ex.getMessage());
+        }
+        return _listaNumeros;
     }
 }
 
