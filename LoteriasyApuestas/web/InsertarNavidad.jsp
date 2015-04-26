@@ -1,6 +1,8 @@
 <%@page import="Entidades.Navidad"%>
 <%@page import="java.util.ArrayList"%>
+<jsp:include page="menu.jsp" />
 <div class="lista">
+    <form action="Controller?opID=FomularioInsertarNavidad" method="POST"><button type="submit" name="anadir">Añadir</button></form>
     <table>
         <tr class="colortr">
             <td>Número</td>
@@ -18,11 +20,11 @@
             <td><%=_numero.getNombre()%></td>
             <td><%=_numero.getFecha()%></td>
             <td><%=_numero.getPremios()%></td>
-            <td><a href=" " id="<%=_numero.getId_Navidad()%>" name="eliminar">Eliminar</a></td>
-            <td><a href=" " id="<%=_numero.getId_Navidad()%>" name="editar">Editar</a></td>
+            <td><form action="Controller?opID=InsertarNavidadEliminar" method="POST"><button type="submit" name="eliminar" value="<%=_numero.getId_Navidad()%>">Eliminar</button></form></td>
+            <td><form action="Controller?opID=InsertarNavidadEditar" method="POST"><button type="submit" name="editar" value="<%=_numero.getId_Navidad()%>">Editar</button></form></td>
         </tr>
         <%
             }
         %>
-    </table>   
+    </table>  
 </div>

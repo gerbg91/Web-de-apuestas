@@ -146,17 +146,15 @@ public class Navidad_DAO {
  * 
  * 
  * @param _con
- * @param numero
- * @param fecha
+ * @param id_Navidad
  * @throws Exception 
  */
-    public void eliminarNumero(Connection _con, String numero, String fecha) throws Exception {
+    public void eliminarNumero(Connection _con, String id_Navidad) throws Exception {
         ResultSet rs = null;
         PreparedStatement stmt = null;
         try {
-            stmt = _con.prepareStatement("Delete from navidad where numero=?  and historico=? ");
-            stmt.setString(1,numero);
-            stmt.setString(2,fecha);
+            stmt = _con.prepareStatement("Delete from navidad where id_Navidad=?");
+            stmt.setInt(1,Integer.parseInt(id_Navidad));
             stmt.executeUpdate();
         } catch (SQLException ex) {
             throw new Exception("Ha habido un problema al borrar los numeros en la BD " + ex.getMessage());
@@ -237,19 +235,18 @@ public class Navidad_DAO {
         return _listaNumeros;
     }
     
-    
-    /**
-     * Metodo que recupera todos los numeros
+     /**
+     * Metodo que recupera todos los numeros para usuario
      * 
      * @param _con
      * @return 
      */
-    public ArrayList<Navidad> listaNumero(Connection _con) throws Exception {
+    public ArrayList<Navidad> listaNumero_user(Connection _con) throws Exception {
         ArrayList<Navidad> _listaNumeros = new ArrayList();
         ResultSet rs = null;
         PreparedStatement stmt = null;
         try {
-            stmt = _con.prepareStatement("select * from navidad where nombre=\"PrimerPremio\" or nombre=\"SegundoPremio\" or nombre=\"TercerPremio\" or nombre=\"CuartoPremio\" or nombre=\"QuintoPremio\" or nombre=\"Pedrea\" or nombre=\"PrimerPremioAprox\" or nombre=\"SegundoPremioAprox\" or nombre=\"TercerPremioAprox\" order by premios desc, historico asc;");
+            stmt = _con.prepareStatement("select * from navidad where nombre=\"PrimerPremio\" or nombre=\"SegundoPremio\" or nombre=\"TercerPremio\" or nombre=\"CuartoPremio\" or nombre=\"QuintoPremio\" or nombre=\"Pedrea\" or nombre=\"PrimerPremioAprox\" or nombre=\"SegundoPremioAprox\" or nombre=\"TercerPremioAprox\" order by premios desc,nombre, historico asc;");
             rs = stmt.executeQuery();
             Navidad _numeros = null;
             while (rs.next()) {
@@ -267,5 +264,105 @@ public class Navidad_DAO {
             }
         }
         return _listaNumeros;
+    }
+    
+    
+    /**
+     * Metodo que recupera todos los numeros para edicion
+     * 
+     * @param _con
+     * @return 
+     */
+    public ArrayList<Navidad> listaNumero(Connection _con) throws Exception {
+        ArrayList<Navidad> _listaNumeros = new ArrayList();
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+        try {
+            stmt = _con.prepareStatement("select * from navidad where nombre=\"PrimerPremio\" or nombre=\"SegundoPremio\" or nombre=\"TercerPremio\" or nombre=\"CuartoPremio\" or nombre=\"QuintoPremio\" or nombre=\"Pedrea\" or nombre=\"PrimerPremioAprox\" or nombre=\"SegundoPremioAprox\" or nombre=\"TercerPremioAprox\" or nombre=\"PrimerPremioCentenas\" or nombre=\"SegundoPremioCentenas\" or nombre=\"TercerPremioCentenas\" or nombre=\"CuartoPremioCentenas\" or nombre=\"CuartoPremioCentenas\" or nombre=\"PrimerPremioDecenas\" or nombre=\"SegundoPremioDecenas\" or nombre=\"TercerPremioDecenas\" or nombre=\"Reintegro\"order by premios desc,nombre, historico asc;");
+            rs = stmt.executeQuery();
+            Navidad _numeros = null;
+            while (rs.next()) {
+                _numeros = new Navidad();
+                _listaNumeros.add(obtenNumeros(rs, _numeros));
+            }
+        } catch (SQLException ex) {
+            throw new Exception("Ha habido un problema al buscar los numeros en la BD " + ex.getMessage());
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+        return _listaNumeros;
+    }
+    /**
+     * Metodo que recupera los datos de la base de datos
+     * 
+     * @param _con
+     * @param id_Navidad
+     * @return 
+     * @throws java.lang.Exception 
+     */
+    public Navidad datosNumero(Connection _con, String id_Navidad) throws Exception {
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+        try {
+            stmt = _con.prepareStatement("select * from navidad where id_Navidad=?;");
+            stmt.setInt(1,Integer.parseInt(id_Navidad));
+            rs = stmt.executeQuery();            
+            Navidad _numero = new Navidad();
+           while (rs.next()) {
+                 _numero.setId_Navidad(rs.getInt("id_Navidad"));
+                    _numero.setNumero(rs.getString("numero"));
+                  _numero.setNombre(rs.getString("nombre"));
+                   _numero.setFecha(rs.getDate("historico"));
+                  _numero.setPremios(rs.getFloat("premios"));
+           }
+              return _numero;
+           
+        } catch (SQLException ex) {
+            throw new Exception("Ha habido un problema al buscar los numeros en la BD " + ex.getMessage());
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+        } 
+    }
+    /**
+     * Metodo que actualiza el numero
+     *
+     * @param _con
+     * @param numero
+     * @param TipoPremio
+     * @param fecha
+     * @param cantidadPremio
+     * @param id_Navidad
+     */
+    public void actualizarNumero(Connection _con, String numero, String TipoPremio, String fecha, float cantidadPremio, String id_Navidad) throws Exception {
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+        try {
+            stmt = _con.prepareStatement("UPDATE navidad set numero=? , nombre=?, historico=?, premios=? where id_Navidad=?",Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1,numero);
+            stmt.setString(2,TipoPremio);
+            stmt.setString(3,fecha);
+            stmt.setFloat(4,cantidadPremio);
+            stmt.setInt(5,Integer.parseInt(id_Navidad));
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            throw new Exception("Ha habido un problema al insertar los numeros en la BD " + ex.getMessage());
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
     }
 }

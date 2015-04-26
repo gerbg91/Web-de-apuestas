@@ -18,7 +18,7 @@ public class ListaNumerosNavidadCommand extends ICommand {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
           NavidadBLL _listaNumerosBLL = new NavidadBLL();  
-          request.setAttribute("_listaNumeros", _listaNumerosBLL.listaNumeros());
+          request.setAttribute("_listaNumeros", _listaNumerosBLL.listaNumeros_user());
         return "/ListaResultadosNavidad.jsp";
     }
 }

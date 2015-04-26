@@ -20,7 +20,7 @@ public class EntradaCommand extends ICommand {
         AdminBLL _adminBLL = new AdminBLL();
         boolean _verificacion = _adminBLL.comprobarUsuarioBLL(_usuario, _password);
         if (_verificacion) {
-            return "/InsertarCupon.jsp";
+            return "/PrincipalBackend.jsp";
         } else {
             return "/login.jsp";
         }
