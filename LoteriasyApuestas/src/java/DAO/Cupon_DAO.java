@@ -6,6 +6,7 @@
 package DAO;
 
 import Entidades.Cupon;
+import Entidades.Navidad;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -102,89 +103,20 @@ public class Cupon_DAO {
         }
     }
 
-    /**
-     * Metodo que busca en la base de datos el numero deseado
-     *
-     * @param _con
-     * @param _numero_busqueda
-     * @return
-     * @throws java.lang.Exception
-     */
-    public ArrayList<Cupon> buscarNumero(Connection _con, int _numero_busqueda) throws Exception {
-        ArrayList<Cupon> _listaNumeros = new ArrayList();
-        ResultSet rs = null;
-        PreparedStatement stmt = null;
-        try {
-            stmt = _con.prepareStatement("select * from cupon where numero=?");
-            stmt.setString(1, Integer.toString(_numero_busqueda));
-            rs = stmt.executeQuery();
-            Cupon _numeros = null;
-            while (rs.next()) {
-                _numeros = new Cupon();
-                _listaNumeros.add(obtenNumeros(rs, _numeros));
-            }
-        } catch (SQLException ex) {
-            throw new Exception("Ha habido un problema al buscar los numeros en la BD " + ex.getMessage());
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (stmt != null) {
-                stmt.close();
-            }
-        }
-        return _listaNumeros;
-    }
-
-    /**
-     * Metodo que busca en la base de datos por fecha
-     *
-     * @param _con
-     * @param _fecha
-     * @return
-     * @throws java.lang.Exception
-     */
-    public ArrayList<Cupon> buscarNumeroByFecha(Connection _con, String _fecha) throws Exception {
-        ArrayList<Cupon> _listaNumeros = new ArrayList();
-        ResultSet rs = null;
-        PreparedStatement stmt = null;
-        try {
-            stmt = _con.prepareStatement("select * from cupon where historico=?");
-            stmt.setString(1, _fecha);
-            rs = stmt.executeQuery();
-            Cupon _numeros = null;
-            while (rs.next()) {
-                _numeros = new Cupon();
-                _listaNumeros.add(obtenNumeros(rs, _numeros));
-            }
-        } catch (SQLException ex) {
-            throw new Exception("Ha habido un problema al buscar los numeros en la BD " + ex.getMessage());
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (stmt != null) {
-                stmt.close();
-            }
-        }
-        return _listaNumeros;
-    }
 
     /**
      * Metodo que elimina el registro de la base de datos
      *
      * @param _con
-     * @param _numero_cupon
-     * @param _fecha
+     * @param id
      * @throws java.lang.Exception
      */
-    public void eliminarNumero(Connection _con, String _numero_cupon, String _fecha) throws Exception {
+    public void eliminarNumero(Connection _con, String id) throws Exception {
         ResultSet rs = null;
         PreparedStatement stmt = null;
         try {
-            stmt = _con.prepareStatement("Delete from cupon where numero=? and historico=?", Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, _numero_cupon);
-            stmt.setString(2, _fecha);
+            stmt = _con.prepareStatement("Delete from cupon where id_Cupon=?", Statement.RETURN_GENERATED_KEYS);
+            stmt.setInt(1, Integer.parseInt(id));
             stmt.executeUpdate();
         } catch (SQLException ex) {
             throw new Exception("Ha habido un problema al borrar los numeros en la BD " + ex.getMessage());
@@ -199,7 +131,7 @@ public class Cupon_DAO {
     }
 
   /**
-     * Metodo que busca en la base de datos por fecha
+     * Metodo que busca en la base de datos por fecha para el user
      *
      * @param _con
      * @return
@@ -228,5 +160,107 @@ public class Cupon_DAO {
             }
         }
         return _listaNumeros;
+    }
+    
+     /**
+     * Metodo que busca en la base de datos por fecha para el admin
+     *
+     * @param _con
+     * @return
+     * @throws java.lang.Exception
+     */
+    public ArrayList<Cupon> listaNumeros_admin(Connection _con) throws Exception {
+        ArrayList<Cupon> _listaNumeros = new ArrayList();
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+        try {
+            stmt = _con.prepareStatement("select * from cupon where nombre=\"CincoCifras\" or nombre=\"CuatroCifras\" or nombre=\"TresCifras\" or nombre=\"DosCifras\" or nombre=\"UltimaCifra\" or nombre=\"Serie\" order by historico desc, premios desc, numero;");
+            rs = stmt.executeQuery();
+            Cupon _numeros = null;
+            while (rs.next()) {
+                _numeros = new Cupon();
+                _listaNumeros.add(obtenNumeros(rs, _numeros));
+            }
+        } catch (SQLException ex) {
+            throw new Exception("Ha habido un problema al buscar los numeros en la BD " + ex.getMessage());
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+        return _listaNumeros;
+    }
+
+      /**
+     * Metodo que recupera los datos de la base de datos
+     * 
+     * @param _con
+     * @param id_Cupon
+     * @return 
+     * @throws java.lang.Exception 
+     */
+    public Cupon datosNumero(Connection _con, String id_Cupon) throws Exception {
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+        try {
+            stmt = _con.prepareStatement("select * from cupon where id_Cupon=?;");
+            stmt.setInt(1,Integer.parseInt(id_Cupon));
+            rs = stmt.executeQuery();            
+            Cupon _numero = new Cupon();
+           while (rs.next()) {
+                 _numero.setId_Cupon(rs.getInt("id_Cupon"));
+                    _numero.setNumero(rs.getString("numero"));
+                  _numero.setNombre(rs.getString("nombre"));
+                   _numero.setFecha(rs.getDate("historico"));
+                  _numero.setPremios(rs.getFloat("premios"));
+           }
+              return _numero;
+           
+        } catch (SQLException ex) {
+            throw new Exception("Ha habido un problema al buscar los numeros en la BD " + ex.getMessage());
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+        } 
+    }
+    /**
+     * Metodo que actualiza el numero
+     *
+     * @param _con
+     * @param numero
+     * @param TipoPremio
+     * @param fecha
+     * @param cantidadPremio
+     * @param id_Cupon
+     * @throws java.lang.Exception
+     */
+    public void actualizarNumero(Connection _con, String numero, String TipoPremio, String fecha, float cantidadPremio, String id_Cupon) throws Exception {
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+        try {
+            stmt = _con.prepareStatement("UPDATE cupon set numero=? , nombre=?, historico=?, premios=? where id_Cupon=?",Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1,numero);
+            stmt.setString(2,TipoPremio);
+            stmt.setString(3,fecha);
+            stmt.setFloat(4,cantidadPremio);
+            stmt.setInt(5,Integer.parseInt(id_Cupon));
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            throw new Exception("Ha habido un problema al insertar los numeros en la BD " + ex.getMessage());
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
     }
 }

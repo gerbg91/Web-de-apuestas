@@ -1,7 +1,7 @@
 
 package Presentation.Command;
 
-import BLL.CuponBLL;
+import BLL.NinoBLL;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,19 +12,19 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet que accede a la logica de negocio BLL
  * Recupera el resultado del numero dado o la apuesta hecha en la BD
  */
-@WebServlet(name = "InsertarCuponCommand", urlPatterns = {"/InsertarCuponCommand"})
-public class InsertarCuponCommand extends ICommand {
+@WebServlet(name = "NumeroActualizarNinoCommand", urlPatterns = {"/NumeroActualizarNinoCommand"})
+public class NumeroActualizarNinoCommand extends ICommand {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-        CuponBLL _cuponBLL = new CuponBLL();
-
-            String _numero_cupon = request.getParameter("numeroDado");
+          
+             NinoBLL _ninoBLL = new NinoBLL();
+            String _numero_nino = request.getParameter("numeroDado");
             String _tipo_loteria = request.getParameter("TipoLoteria");
             float _premio = Float.parseFloat(request.getParameter("premios"));
             String _fecha = request.getParameter("ingreso");
-            _cuponBLL.insertarNumeroBLL(_numero_cupon, _premio, _fecha, _tipo_loteria);
+            String _id = request.getParameter("id_Nino");
+           _ninoBLL.actualizarNumeroBLL(_numero_nino, _premio, _fecha, _tipo_loteria, _id);  
         return "/PrincipalBackend.jsp";
     }
 }

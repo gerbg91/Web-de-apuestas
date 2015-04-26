@@ -19,11 +19,8 @@ public class InsertarCuponEliminarCommand extends ICommand {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         CuponBLL _cuponBLL = new CuponBLL();
-            String _fecha = request.getParameter("ingreso");
-            String _tipo_loteria = request.getParameter("TipoLoteria");
-            String _numero_cupon = request.getParameter("numeroDado");
-            _cuponBLL.eliminarNumeroBLL(_numero_cupon, _fecha);
-        
-        return "/InsertarCupon.jsp";
+           String _id_Cupon = (request.getParameter("eliminar"));
+           _cuponBLL.eliminarNumeroBLL(_id_Cupon);
+        return "/PrincipalBackend.jsp";
     }
 }

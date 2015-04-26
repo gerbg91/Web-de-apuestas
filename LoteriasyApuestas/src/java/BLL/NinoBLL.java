@@ -157,68 +157,21 @@ public class NinoBLL {
  
 /**
  * Metodo que elimina de la base de datos
- * 
- * @param numero
- * @param fecha 
+ *  
+     * @param id_Nino
  */
-     public void eliminarNumeroBLL(String numero, String fecha) {
+     public void eliminarNumeroBLL(String id_Nino) {
       Connection _con;
         try {
             Connection_DB _conexion_DB = new Connection_DB();
             _con = _conexion_DB.AbrirConexion();
             Nino_DAO _compruebaDAO = new Nino_DAO();
-             _compruebaDAO.eliminarNumero(_con, numero, fecha);
+             _compruebaDAO.eliminarNumero(_con, id_Nino);
             _conexion_DB.CerrarConexion(_con);
         } catch (Exception ex) {
             System.out.println("Excepcion->" + ex.getMessage());
         }
 }
-
-/**
- * Metodo que busca el numero en la base de datos
- * 
- * 
- * @param _numero_busqueda 
- * @return  
- */
-    public ArrayList<Nino> buscarNumeroBLL(int _numero_busqueda) {
-       ArrayList<Nino> _listaNumeros = null;
-        Connection _con;
-        try {
-            Connection_DB _conexion_DB = new Connection_DB();
-            _con = _conexion_DB.AbrirConexion();
-            Nino_DAO _compruebaDAO = new Nino_DAO();
-            _listaNumeros= _compruebaDAO.buscarNumero(_con, _numero_busqueda);
-            _conexion_DB.CerrarConexion(_con);
-        } catch (Exception ex) {
-            System.out.println("Excepcion->" + ex.getMessage());
-        }
-        return _listaNumeros;
-    }
-    
-    
-/**
- * Metodo que busca los numeros por fecha
- * 
- * @param _fecha
- * @return 
- */
-    public ArrayList<Nino> buscarNumeroByFechaBLL(String _fecha) {
-   
-        ArrayList<Nino> _listaNumeros = null;
-        Connection _con;
-        try {
-            Connection_DB _conexion_DB = new Connection_DB();
-            _con = _conexion_DB.AbrirConexion();
-            Nino_DAO _compruebaDAO = new Nino_DAO();
-            _listaNumeros= _compruebaDAO.buscarNumeroByFecha(_con, _fecha);
-            _conexion_DB.CerrarConexion(_con);
-        } catch (Exception ex) {
-            System.out.println("Excepcion->" + ex.getMessage());
-        }
-        return _listaNumeros;
-    
-    }
 
     /**
      * Metodo que recupera la lista de numeros premiados
@@ -239,6 +192,49 @@ public class NinoBLL {
             System.out.println("Excepcion->" + ex.getMessage());
         }
         return _listaNumeros;
+    }
+
+  /**
+     * Metodo que recupera los datos a actualizar de un numero
+     *
+     * @param _id_Nino
+     * @return
+     */
+    public Nino editarNumeroBLL(String _id_Nino) {
+        Nino _datos = null;
+        Connection _con;
+        try {
+            Connection_DB _conexion_DB = new Connection_DB();
+            _con = _conexion_DB.AbrirConexion();
+            Nino_DAO _datosDAO = new Nino_DAO();
+            _datos = _datosDAO.datosNumero(_con, _id_Nino);
+            _conexion_DB.CerrarConexion(_con);
+        } catch (Exception ex) {
+            System.out.println("Excepcion->" + ex.getMessage());
+        }
+        return _datos;
+    }
+
+      /**
+     * Metodo que actualiza en la base de datos el numero
+     *
+     * @param _numero_navidad
+     * @param _premio
+     * @param _fecha
+     * @param _tipo_loteria
+     * @param id
+     */
+    public void actualizarNumeroBLL(String _numero_nino, float _premio, String _fecha, String _tipo_loteria, String id) {
+        Connection _con;
+        try {
+            Connection_DB _conexion_DB = new Connection_DB();
+            _con = _conexion_DB.AbrirConexion();
+            Nino_DAO _compruebaDAO = new Nino_DAO();
+            _compruebaDAO.actualizarNumero(_con, _numero_nino, _tipo_loteria, _fecha, _premio, id);
+            _conexion_DB.CerrarConexion(_con);
+        } catch (Exception ex) {
+            System.out.println("Excepcion->" + ex.getMessage());
+        }
     }
 }
 

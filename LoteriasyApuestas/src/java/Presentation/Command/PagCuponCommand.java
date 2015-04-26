@@ -1,6 +1,7 @@
 
 package Presentation.Command;
 
+import BLL.CuponBLL;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,8 @@ public class PagCuponCommand extends ICommand {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+         CuponBLL _listaNumerosBLL = new CuponBLL();  
+          request.setAttribute("_listaNumeros", _listaNumerosBLL.listaNumeros_admin());
         return "/InsertarCupon.jsp";
     }
 }

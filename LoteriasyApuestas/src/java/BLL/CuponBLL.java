@@ -7,7 +7,9 @@ package BLL;
 
 import DAO.Connection_DB;
 import DAO.Cupon_DAO;
+import DAO.Nino_DAO;
 import Entidades.Cupon;
+import Entidades.Nino;
 import java.sql.Connection;
 import java.util.ArrayList;
 
@@ -98,62 +100,20 @@ public class CuponBLL {
             System.out.println("Excepcion->" + ex.getMessage());
         }
     }
-    /**
-     * Metodo que hace una busqueda por numero
-     * 
-     * @param _numero_busqueda
-     * @return 
-     */
-    public ArrayList<Cupon> buscarNumeroBLL(int _numero_busqueda) {
-        ArrayList<Cupon> _listaNumeros = null;
-        Connection _con;
-        try {
-            Connection_DB _conexion_DB = new Connection_DB();
-            _con = _conexion_DB.AbrirConexion();
-            Cupon_DAO _compruebaDAO = new Cupon_DAO();
-            _listaNumeros= _compruebaDAO.buscarNumero(_con, _numero_busqueda);
-            _conexion_DB.CerrarConexion(_con);
-        } catch (Exception ex) {
-            System.out.println("Excepcion->" + ex.getMessage());
-        }
-        return _listaNumeros;
-    
-    }
-/**
- * Metodo que busca en la base de datos el numero by fecha
- * 
- * @param _fecha
- * @return 
- */
-    public ArrayList<Cupon> buscarNumeroByFechaBLL(String _fecha) {
- ArrayList<Cupon> _listaNumeros = null;
-        Connection _con;
-        try {
-            Connection_DB _conexion_DB = new Connection_DB();
-            _con = _conexion_DB.AbrirConexion();
-            Cupon_DAO _compruebaDAO = new Cupon_DAO();
-            _listaNumeros= _compruebaDAO.buscarNumeroByFecha(_con, _fecha);
-            _conexion_DB.CerrarConexion(_con);
-        } catch (Exception ex) {
-            System.out.println("Excepcion->" + ex.getMessage());
-        }
-        return _listaNumeros;
-    
-    }
+
 /**
  * Metodo que elimina un registro de la base de datos
  * 
- * @param _numero_cupon
- * @param _fecha
+ * @param id
  */
-    public void eliminarNumeroBLL(String _numero_cupon, String _fecha) {
+    public void eliminarNumeroBLL(String id) {
 
       Connection _con;
         try {
             Connection_DB _conexion_DB = new Connection_DB();
             _con = _conexion_DB.AbrirConexion();
             Cupon_DAO _compruebaDAO = new Cupon_DAO();
-            _compruebaDAO.eliminarNumero(_con, _numero_cupon, _fecha);
+            _compruebaDAO.eliminarNumero(_con, id);
             _conexion_DB.CerrarConexion(_con);
         } catch (Exception ex) {
             System.out.println("Excepcion->" + ex.getMessage());
@@ -161,7 +121,27 @@ public class CuponBLL {
     }
 
   /**
- * Metodo que busca en la base de datos el numero by fecha
+ * Metodo que lista los numeros para el admin
+ * 
+ * @return 
+ */
+    public ArrayList<Cupon> listaNumeros_admin() {
+ ArrayList<Cupon> _listaNumeros = null;
+        Connection _con;
+        try {
+            Connection_DB _conexion_DB = new Connection_DB();
+            _con = _conexion_DB.AbrirConexion();
+            Cupon_DAO _compruebaDAO = new Cupon_DAO();
+            _listaNumeros= _compruebaDAO.listaNumeros_admin(_con);
+            _conexion_DB.CerrarConexion(_con);
+        } catch (Exception ex) {
+            System.out.println("Excepcion->" + ex.getMessage());
+        }
+        return _listaNumeros;
+    
+    }
+      /**
+ * Metodo que lista los numeros para el user
  * 
  * @return 
  */
@@ -179,5 +159,48 @@ public class CuponBLL {
         }
         return _listaNumeros;
     
+    }
+
+     /**
+     * Metodo que recupera los datos a actualizar de un numero
+     *
+     * @param _id_Cupon
+     * @return
+     */
+    public Cupon editarNumeroBLL(String _id_Cupon) {
+        Cupon _datos = null;
+        Connection _con;
+        try {
+            Connection_DB _conexion_DB = new Connection_DB();
+            _con = _conexion_DB.AbrirConexion();
+            Cupon_DAO _datosDAO = new Cupon_DAO();
+            _datos = _datosDAO.datosNumero(_con, _id_Cupon);
+            _conexion_DB.CerrarConexion(_con);
+        } catch (Exception ex) {
+            System.out.println("Excepcion->" + ex.getMessage());
+        }
+        return _datos;
+    }
+
+        /**
+     * Metodo que actualiza en la base de datos el numero
+     *
+     * @param _numero_cupon
+     * @param _premio
+     * @param _fecha
+     * @param _tipo_loteria
+     * @param id
+     */
+    public void actualizarNumeroBLL(String _numero_cupon, float _premio, String _fecha, String _tipo_loteria, String id) {
+        Connection _con;
+        try {
+            Connection_DB _conexion_DB = new Connection_DB();
+            _con = _conexion_DB.AbrirConexion();
+            Cupon_DAO _compruebaDAO = new Cupon_DAO();
+            _compruebaDAO.actualizarNumero(_con, _numero_cupon, _tipo_loteria, _fecha, _premio, id);
+            _conexion_DB.CerrarConexion(_con);
+        } catch (Exception ex) {
+            System.out.println("Excepcion->" + ex.getMessage());
+        }
     }
 }

@@ -3,7 +3,7 @@
 <% Navidad _datosNumero = (Navidad) request.getAttribute("_datosNumero");%>
 
 <div class="form">  
-    <form action="Controller?opID=NumeroActualizar" method="POST">
+    <form action="Controller?opID=NumeroActualizarNavidad" method="POST">
         Numero:<input type="number" name="numeroDado" value="<%=_datosNumero.getNumero()%>"/>
         <select name="TipoLoteria">
             <option value="<%=_datosNumero.getNombre()%>" selected><%=_datosNumero.getNombre()%></option>

@@ -168,73 +168,6 @@ public class Navidad_DAO {
         }
     }
     
-/**
- * Metodo que busca en la base de datos
- * 
- * @param _con
- * @param _numero_busqueda
- * @return
- * @throws Exception 
- */
-    public ArrayList<Navidad> buscarNumero(Connection _con, int _numero_busqueda) throws Exception {
-     ArrayList<Navidad> _listaNumeros = new ArrayList();
-        ResultSet rs = null;
-        PreparedStatement stmt = null;
-        try {
-            stmt = _con.prepareStatement("select * from navidad where numero=?");
-            stmt.setString(1,Integer.toString(_numero_busqueda));
-            rs = stmt.executeQuery();
-            Navidad _numeros = null;
-            while (rs.next()) {
-                _numeros = new Navidad();
-                _listaNumeros.add(obtenNumeros(rs, _numeros));
-            }
-        } catch (SQLException ex) {
-            throw new Exception("Ha habido un problema al buscar los numeros en la BD " + ex.getMessage());
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (stmt != null) {
-                stmt.close();
-            }
-        }
-        return _listaNumeros;
-    }
-/**
- * Metodo que busca en la BD por fecha
- * 
- * @param _con
- * @param _fecha
- * @return 
- * @throws java.lang.Exception 
- */
-    public ArrayList<Navidad> buscarNumeroFecha(Connection _con, String _fecha) throws Exception {
-     ArrayList<Navidad> _listaNumeros = new ArrayList();
-        ResultSet rs = null;
-        PreparedStatement stmt = null;
-        try {
-            stmt = _con.prepareStatement("select * from navidad where historico=?");
-            stmt.setString(1,_fecha);
-            rs = stmt.executeQuery();
-            Navidad _numeros = null;
-            while (rs.next()) {
-                _numeros = new Navidad();
-                _listaNumeros.add(obtenNumeros(rs, _numeros));
-            }
-        } catch (SQLException ex) {
-            throw new Exception("Ha habido un problema al buscar los numeros en la BD " + ex.getMessage());
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (stmt != null) {
-                stmt.close();
-            }
-        }
-        return _listaNumeros;
-    }
-    
      /**
      * Metodo que recupera todos los numeros para usuario
      * 
@@ -278,7 +211,7 @@ public class Navidad_DAO {
         ResultSet rs = null;
         PreparedStatement stmt = null;
         try {
-            stmt = _con.prepareStatement("select * from navidad where nombre=\"PrimerPremio\" or nombre=\"SegundoPremio\" or nombre=\"TercerPremio\" or nombre=\"CuartoPremio\" or nombre=\"QuintoPremio\" or nombre=\"Pedrea\" or nombre=\"PrimerPremioAprox\" or nombre=\"SegundoPremioAprox\" or nombre=\"TercerPremioAprox\" or nombre=\"PrimerPremioCentenas\" or nombre=\"SegundoPremioCentenas\" or nombre=\"TercerPremioCentenas\" or nombre=\"CuartoPremioCentenas\" or nombre=\"CuartoPremioCentenas\" or nombre=\"PrimerPremioDecenas\" or nombre=\"SegundoPremioDecenas\" or nombre=\"TercerPremioDecenas\" or nombre=\"Reintegro\"order by premios desc,nombre, historico asc;");
+            stmt = _con.prepareStatement("select * from navidad where nombre=\"PrimerPremio\" or nombre=\"SegundoPremio\" or nombre=\"TercerPremio\" or nombre=\"CuartoPremio\" or nombre=\"QuintoPremio\" or nombre=\"Pedrea\" or nombre=\"PrimerPremioAprox\" or nombre=\"SegundoPremioAprox\" or nombre=\"TercerPremioAprox\" or nombre=\"PrimerPremioCentenas\" or nombre=\"SegundoPremioCentenas\" or nombre=\"TercerPremioCentenas\" or nombre=\"CuartoPremioCentenas\" or nombre=\"CuartoPremioCentenas\" or nombre=\"PrimerPremioDecenas\" or nombre=\"SegundoPremioDecenas\" or nombre=\"TercerPremioDecenas\" or nombre=\"Reintegro\"order by historico desc,premios desc,nombre ;");
             rs = stmt.executeQuery();
             Navidad _numeros = null;
             while (rs.next()) {

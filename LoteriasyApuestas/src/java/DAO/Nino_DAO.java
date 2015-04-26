@@ -5,7 +5,6 @@
  */
 package DAO;
 
-import Entidades.Navidad;
 import Entidades.Nino;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -141,57 +140,21 @@ public class Nino_DAO {
             }
         }
     }
-
-/**
- * Metodo que busca en la base de datos
- * 
- * @param _con
- * @param _numero_busqueda
- * @return
- * @throws Exception 
- */
-    public ArrayList<Nino> buscarNumero(Connection _con, int _numero_busqueda) throws Exception {
-     ArrayList<Nino> _listaNumeros = new ArrayList();
-        ResultSet rs = null;
-        PreparedStatement stmt = null;
-        try {
-            stmt = _con.prepareStatement("select * from nino where numero=?");
-            stmt.setString(1,Integer.toString(_numero_busqueda));
-            rs = stmt.executeQuery();
-            Nino _numeros = null;
-            while (rs.next()) {
-                _numeros = new Nino();
-                _listaNumeros.add(obtenNumeros(rs, _numeros));
-            }
-        } catch (SQLException ex) {
-            throw new Exception("Ha habido un problema al buscar los numeros en la BD " + ex.getMessage());
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (stmt != null) {
-                stmt.close();
-            }
-        }
-        return _listaNumeros;
-    }
     
     /**
      *Metodo que elimina de la base de datos
      * 
      * @param _con
-     * @param numero
-     * @param fecha
+     * @param id_Nino
      * @throws Exception 
      */
-    public void eliminarNumero(Connection _con, String numero, String fecha) throws Exception {
+    public void eliminarNumero(Connection _con,String id_Nino) throws Exception {
 
          ResultSet rs = null;
         PreparedStatement stmt = null;
         try {
-            stmt = _con.prepareStatement("Delete from nino where numero=? and historico=?");
-            stmt.setString(1,numero);
-            stmt.setString(2,fecha);
+            stmt = _con.prepareStatement("Delete from nino where id_Nino=?");
+            stmt.setInt(1,Integer.parseInt(id_Nino));
             stmt.executeUpdate();
         } catch (SQLException ex) {
             throw new Exception("Ha habido un problema al borrar los numeros en la BD " + ex.getMessage());
@@ -206,20 +169,18 @@ public class Nino_DAO {
     
     }
 
-    /**
-     * Metodo que busca los numeros por fecha
+     /**
+     * Metodo que busca luna lista de numeros
      * 
      * @param _con
-     * @param _fecha
      * @return 
      */
-    public ArrayList<Nino> buscarNumeroByFecha(Connection _con, String _fecha) throws Exception {
+    public ArrayList<Nino> listaNumeros(Connection _con) throws Exception {
     ArrayList<Nino> _listaNumeros = new ArrayList();
         ResultSet rs = null;
         PreparedStatement stmt = null;
         try {
-            stmt = _con.prepareStatement("select * from nino where historico=?");
-            stmt.setString(1,_fecha);
+            stmt = _con.prepareStatement("Select * from nino where nombre=\"PrimerPremio\" or nombre=\"SegundoPremio\" or nombre=\"TercerPremio\" or nombre=\"TerminacionCuatroCifras\" or nombre=\"TerminacionTresCifras\" or nombre=\"TerminacionDosCifras\" or nombre=\"TerminacionUltimaCifra\" or nombre=\"PrimeraCifraPrimero\" or nombre=\"PrimeraCifraSegundo\" order by historico desc,premios desc,nombre;");
             rs = stmt.executeQuery();
             Nino _numeros = null;
             while (rs.next()) {
@@ -240,24 +201,31 @@ public class Nino_DAO {
     
     }
 
-     /**
-     * Metodo que busca luna lista de numeros
+    /**
+     * Metodo que recupera los datos de la base de datos
      * 
      * @param _con
+     * @param id_Nino
      * @return 
+     * @throws java.lang.Exception 
      */
-    public ArrayList<Nino> listaNumeros(Connection _con) throws Exception {
-    ArrayList<Nino> _listaNumeros = new ArrayList();
+    public Nino datosNumero(Connection _con, String id_Nino) throws Exception {
         ResultSet rs = null;
         PreparedStatement stmt = null;
         try {
-            stmt = _con.prepareStatement("Select * from nino where nombre=\"PrimerPremio\" or nombre=\"SegundoPremio\" or nombre=\"TerminacionCuatroCifras\" or nombre=\"TerminacionTresCifras\" or nombre=\"TerminacionDosCifras\" or nombre=\"TerminacionUltimaCifra\" or nombre=\"PrimeraCifraPrimero\" or nombre=\"PrimeraCifraSegundo\" order by premios desc,historico asc;");
-            rs = stmt.executeQuery();
-            Nino _numeros = null;
-            while (rs.next()) {
-                _numeros = new Nino();
-                _listaNumeros.add(obtenNumeros(rs, _numeros));
-            }
+            stmt = _con.prepareStatement("select * from nino where id_Nino=?;");
+            stmt.setInt(1,Integer.parseInt(id_Nino));
+            rs = stmt.executeQuery();            
+            Nino _numero = new Nino();
+           while (rs.next()) {
+                 _numero.setId_Nino(rs.getInt("id_Nino"));
+                    _numero.setNumero(rs.getString("numero"));
+                  _numero.setNombre(rs.getString("nombre"));
+                   _numero.setFecha(rs.getDate("historico"));
+                  _numero.setPremios(rs.getFloat("premios"));
+           }
+              return _numero;
+           
         } catch (SQLException ex) {
             throw new Exception("Ha habido un problema al buscar los numeros en la BD " + ex.getMessage());
         } finally {
@@ -267,9 +235,41 @@ public class Nino_DAO {
             if (stmt != null) {
                 stmt.close();
             }
+        } 
+    }
+
+   /**
+     * Metodo que actualiza el numero
+     *
+     * @param _con
+     * @param numero
+     * @param TipoPremio
+     * @param fecha
+     * @param cantidadPremio
+     * @param id_Nino
+     * @throws java.lang.Exception
+     */
+    public void actualizarNumero(Connection _con, String numero, String TipoPremio, String fecha, float cantidadPremio, String id_Nino) throws Exception {
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+        try {
+            stmt = _con.prepareStatement("UPDATE nino set numero=? , nombre=?, historico=?, premios=? where id_Nino=?",Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1,numero);
+            stmt.setString(2,TipoPremio);
+            stmt.setString(3,fecha);
+            stmt.setFloat(4,cantidadPremio);
+            stmt.setInt(5,Integer.parseInt(id_Nino));
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            throw new Exception("Ha habido un problema al insertar los numeros en la BD " + ex.getMessage());
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
         }
-        return _listaNumeros;
-    
     }
 }
 
