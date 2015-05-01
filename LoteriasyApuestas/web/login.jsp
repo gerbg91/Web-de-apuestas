@@ -1,9 +1,10 @@
 <div class="login">
-    <h4>*Solo acceso a los administradores</h4>
     <form action="Controller?opID=Entrada" method="POST">
-        Administrador:<input type="text" name="usuario"/>
-        Password:<input type="password" name="password"/>
-        <input type="submit" value="Acceder" />
+        <b class="bname">Administrador:</b><br/><input  class="input_login" type="text" name="usuario"/>
+        <br>
+        <br>
+        <b class="bname1">Password:</b><br/><input class="input_login" type="password" name="password"/>
+        <p><input class="boton_login" type="submit" value="Acceder" /></p>
     </form>
 </div>
 

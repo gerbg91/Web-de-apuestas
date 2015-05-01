@@ -1,4 +1,5 @@
-<div class="publi_comprobacion">Publicidad</div>
+
+<div class="publi_comprobacion"><img src="images/banner1.png" alt="Advertisement" border="0" /></div>
 <div class="comprobacion">
     <form action="Controller?opID=ResultadoCupon" method="POST" class="form_compro1">
         Numero:<input type="number" name="numeroDado" required = "required"/>
@@ -16,11 +17,5 @@
         <p class="p3">esta siempre de nuestra parte.</p>
     </div>             
 </div>
-<script type="text/javascript">
-    Calendar.setup({
-        inputField: "ingreso",
-        ifFormat: "%Y-%m-%d",
-        button: "lanzador"
-    });
-</script>
+<script src="js/calen.js" type="text/javascript"></script> 
 

@@ -1,19 +1,20 @@
 
 
 /*Tipografia*/
+
 @font-face {
-    font-family: 'icomoon';
-    src:url('../tipografia/fonts/icomoon.eot?p1zwms');
-    src:url('../tipografia/fonts/icomoon.eot?#iefixp1zwms') format('embedded-opentype'),
-        url('../tipografia/fonts/icomoon.woff?p1zwms') format('woff'),
-        url('../tipografia/fonts/icomoon.ttf?p1zwms') format('truetype'),
-        url('../tipografia/fonts/icomoon.svg?p1zwms#icomoon') format('svg');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'icomoon';
+	src:url('../tipografia/fonts/icomoon.eot?iy0e69');
+	src:url('../tipografia/fonts/icomoon.eot?#iefixiy0e69') format('embedded-opentype'),
+		url('../tipografia/fonts/icomoon.woff?iy0e69') format('woff'),
+		url('../tipografia/fonts/icomoon.ttf?iy0e69') format('truetype'),
+		url('../tipografia/fonts/icomoon.svg?iy0e69#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
 }
 
 [class^="icon-"], [class*=" icon-"] {
-    font-family: 'icomoon';
+	   font-family: 'icomoon';
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -22,20 +23,42 @@
     line-height: 1;
     color: #C9911C;
 
-    /* Better Font Rendering =========== */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-pencil2:before {
+	content: "\e906";
 }
 
 .icon-cog:before {
-    content: "\e994";
+	content: "\e994";
 }
 
 .icon-sphere:before {
-    content: "\e9c9";
+	content: "\e9c9";
 }
 
+.icon-plus:before {
+	content: "\ea0a";
+}
 
+.icon-cross:before {
+	content: "\ea0f";
+}
+
+.icon-plus{
+    color: green;
+}
+
+.icon-pencil2{
+    color: #A18826;
+}
+
+.icon-cross{    
+    color: red;
+}
 
 /*Body*/
 body {
@@ -47,6 +70,36 @@ body {
     color: black; 
     background-attachment:fixed; 
     background-image: url(images/fondoTrebol.jpg);
+}
+
+/*Class agregar numero*/
+
+.anadir{
+font-size: 15px;
+margin-top: 50px;
+margin-bottom: 50px;
+}
+
+.izquierda{
+width: 117px;
+float: left;
+margin-left: 300px;
+}
+
+.derecha{
+margin-left: 415px;
+margin-bottom: 10px;
+}
+
+.centro{
+margin-left: 330px;
+margin-bottom: 5px;
+padding-bottom: 5px;  
+}
+
+.centro_boton{
+    margin-left: 390px;
+    margin-top: 40px;
 }
 
 /*Links*/
@@ -161,6 +214,47 @@ p {
     margin-left: -45%;
     color: #536961;
     margin-top: 30px;
+}
+
+/*Listas Resultados*/
+.colortr{
+    background-color: #4BBF31;
+    color: rgb(242, 244, 246);
+    height: 30px;
+}
+.t1 {
+    border: 1px none;
+    margin-left: 85px;
+    margin-bottom: 50px;
+    width: 700px;
+    margin-top: 30px;
+}
+
+.t2 {
+    border: 1px none;
+    margin-left: 85px;
+    margin-bottom: 50px;
+    width: 700px;
+    margin-top: 30px;
+}
+
+
+
+.t1 td{
+    font-size: 15px;
+    text-align: center;
+    border: 1px solid;
+}
+
+ .botn{
+    width: 0px;
+    border: 1px none;
+}
+
+.t2 td{
+    font-size: 15px;
+    text-align: center;
+    border: 1px solid;
 }
 
 /*Contenedores de los sorteos*/
@@ -339,13 +433,26 @@ p {
 .login{
     margin-left: 100px;
     margin-top: 160px;
-    font-size: 20px;
-    padding-bottom: 170px;
+    font-size: 17px;
+   padding-bottom: 115px;
+    margin-left: 340px;
 }
 
-.login h4 {
-    color: red;
-    font-style: oblique;
+.bname{
+    margin-left: 25px;
+}
+
+.bname1{
+    margin-left: 45px;
+}
+
+
+.input_login{
+    width: 170px;
+}
+
+.boton_login{
+    margin-left: 30px;
 }
 
 /*Menu login*/
@@ -353,7 +460,28 @@ p {
     margin-right: 23px;
 }
 
-.menu  a:link, a:visited { color: #333333; text-decoration: none; font-weight: normal; } 
+.menu{
+    text-align: center;
+    font-size: 15px;
+}
+
+/*Panel backend*/
+
+.lista_panel{
+    font-size: 16px;
+    padding-bottom: 100px;
+    margin-left: 70px
+}
+
+li{
+    padding-bottom: 10px;
+}
+.lista_panel_p{
+    font-size: 16px;
+    
+}
+
+.menu  a:link, a:visited { color: green; text-decoration: none; font-weight: normal; } 
 
 /*Formularios de registros*/
 

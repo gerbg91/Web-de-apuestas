@@ -1,7 +1,8 @@
 <%@page import="Entidades.Cupon"%>
 <%@page import="java.util.ArrayList"%>
-<div class="lista">
-    <table>
+<div class="publi_comprobacion"><img src="images/banner1.png" alt="Advertisement" border="0" /></div>
+
+    <table class="t2">
         <tr class="colortr">
             <td>Número</td>
             <td>Fecha</td>
@@ -15,8 +16,8 @@
             <td><%=_numero.getNumero()%></td>
             <td><%=_numero.getFecha()%></td>
         </tr>
+   
         <%
             }
         %>
     </table>   
-</div>

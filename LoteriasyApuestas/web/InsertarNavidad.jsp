@@ -1,9 +1,8 @@
 <%@page import="Entidades.Navidad"%>
 <%@page import="java.util.ArrayList"%>
 <jsp:include page="menu.jsp" />
-<div class="lista">
-    <form action="Controller?opID=FomularioInsertarNavidad" method="POST"><button type="submit" name="anadir">Añadir</button></form>
-    <table>
+    <form action="Controller?opID=FomularioInsertarNavidad" method="POST"><button type="submit" name="anadir"><a class="icon-plus"></a></button></form>
+    <table class="t1">
         <tr class="colortr">
             <td>Número</td>
             <td>Premio</td>
@@ -20,11 +19,11 @@
             <td><%=_numero.getNombre()%></td>
             <td><%=_numero.getFecha()%></td>
             <td><%=_numero.getPremios()%></td>
-            <td><form action="Controller?opID=InsertarNavidadEliminar" method="POST"><button type="submit" name="eliminar" value="<%=_numero.getId_Navidad()%>">Eliminar</button></form></td>
-            <td><form action="Controller?opID=InsertarNavidadEditar" method="POST"><button type="submit" name="editar" value="<%=_numero.getId_Navidad()%>">Editar</button></form></td>
+            <td class="botn"><form action="Controller?opID=InsertarNavidadEliminar" method="POST"><button type="submit" name="eliminar" value="<%=_numero.getId_Navidad()%>"><a class="icon-cross"></a></button></form></td>
+            <td class="botn"><form action="Controller?opID=InsertarNavidadEditar" method="POST"><button type="submit" name="editar" value="<%=_numero.getId_Navidad()%>"><a class="icon-pencil2"></a></button></form></td>
         </tr>
+      
         <%
             }
         %>
     </table>  
-</div>

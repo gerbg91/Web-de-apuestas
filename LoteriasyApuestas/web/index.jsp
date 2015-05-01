@@ -8,6 +8,7 @@
         <script src="js/calendar.js" type="text/javascript"></script>
         <script src="js/calendar-es.js" type="text/javascript"></script>
         <script src="js/calendar-setup.js" type="text/javascript"></script> 
+        
     </head>
     <body>
         <div id="templatemo_container">

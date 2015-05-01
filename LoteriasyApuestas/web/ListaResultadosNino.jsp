@@ -1,7 +1,8 @@
 <%@page import="Entidades.Nino"%>
 <%@page import="java.util.ArrayList"%>
-<div class="lista">
-    <table>
+<div class="publi_comprobacion"><img src="images/banner1.png" alt="Advertisement" border="0" /></div>
+
+    <table class="t1">
         <tr class="colortr">
             <td>Número</td>
             <td>Premio</td>
@@ -17,10 +18,10 @@
             <td><%=_numero.getNumero()%></td>
             <td><%=_numero.getNombre()%></td>
             <td><%=_numero.getFecha()%></td>
-            <td><%=_numero.getPremios()%></td>
+            <td><%=_numero.getPremios()%></td>            
         </tr>
+      
         <%
             }
         %>
     </table>   
-</div>

@@ -218,7 +218,7 @@ public class NinoBLL {
       /**
      * Metodo que actualiza en la base de datos el numero
      *
-     * @param _numero_navidad
+     * @param _numero_nino
      * @param _premio
      * @param _fecha
      * @param _tipo_loteria

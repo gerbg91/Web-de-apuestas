@@ -1,5 +1,5 @@
 <div class="div_publicidad">
-    Publicidad
+    <img src="images/banner2.png" alt="Advertisement" border="0" />
 </div>      
 <div class ="contenedores">
 <div class="contenedor_derecho"><div class="header"><a class="icon-sphere"></a>Loteria de Navidad</div>

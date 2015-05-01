@@ -1,4 +1,4 @@
-        <div class="result_right">Publicidad</div>
+        <div class="result_right"><img src="images/banner3.png" alt="Advertisement" border="0" /></div>
         <div class="results">
             <% float _premio = (float) request.getAttribute("Premio");         
             if (_premio == 0) { %>
@@ -21,4 +21,4 @@
                <%}%>     
             <%}%>
         </div>
-        <div class="result_left">Publicidad</div>
+        <div class="result_left"><img src="images/banner3.png" alt="Advertisement" border="0" /></div>
