@@ -29,13 +29,6 @@
             </div> 
             
             <% if(paginaprincipal !="/InsertarNavidad.jsp" && paginaprincipal !="/InsertarCupon.jsp" && paginaprincipal !="/InsertarNino.jsp") {%>
-           <!--  <div id="icons">
-                <ul>
-                    <li><a id="red" href="#"></a></li>
-                    <li><a id="fac" href="#"></a></li>
-                    <li><a id="twi" href="#"></a></li>
-                </ul>
-            </div> -->
           <div class="margin_bottom_1"></div>
             <div id="templatemo_footer">
                 <ul class="footer_list">

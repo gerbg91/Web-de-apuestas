@@ -1,7 +1,7 @@
 <%@page import="Entidades.Navidad"%>
 <%@page import="java.util.ArrayList"%>
 <div class="publi_comprobacion"><img src="images/banner1.png" alt="Advertisement" border="0" /></div>
-
+<div class="listado_usuario">
     <table class="t1">
         <tr class="colortr">
             <td>Número</td>
@@ -25,3 +25,4 @@
             }
         %>
     </table>   
+</div>

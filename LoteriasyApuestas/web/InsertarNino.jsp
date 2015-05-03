@@ -1,6 +1,7 @@
 <%@page import="Entidades.Nino"%>
 <%@page import="java.util.ArrayList"%>
 <jsp:include page="menu.jsp" />
+<div class="listado_edicion">
     <form action="Controller?opID=FomularioInsertarNino" method="POST"><button type="submit" name="anadir"><a class="icon-plus"></a></button></form>
     <table class="t1">
         <tr class="colortr">
@@ -26,3 +27,4 @@
             }
         %>
     </table>  
+</div>

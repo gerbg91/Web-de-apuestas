@@ -88,6 +88,8 @@ public class NinoBLL {
             String dosCifras = numeroVarchar.substring(3);
             /*Ultima cifra*/
             String unaCifra = numeroVarchar.substring(4);
+            /*Primera cifra*/
+            String unCifra = numeroVarchar.substring(0,1);
 
             for (int e = 0; e <= _listaNumeros.size(); e++) {
                 if (premioFinalEuros == 0) {
@@ -119,9 +121,9 @@ public class NinoBLL {
                         }
                     } else if (_listaNumeros.get(e).getNumero().length() == 1) {
                         if (_listaNumeros.get(e).getNumero().equals(unaCifra)) {
-                            
+                            premioFinalEuros = cantidadDinero;                            
+                        }else if (_listaNumeros.get(e).getNumero().equals(unCifra)) {
                             premioFinalEuros = cantidadDinero;
-
                         }
                     }
                 }
