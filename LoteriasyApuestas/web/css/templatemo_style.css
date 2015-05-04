@@ -130,7 +130,7 @@ p {
     margin: 0 auto;
     padding: 0 5px;
     background-color: #f2f4f6;   
-    overflow: hidden; 
+   
 }
 
 #templatemo_banner {
@@ -228,6 +228,7 @@ p {
     margin-bottom: 50px;
     width: 700px;
     margin-top: 30px;
+    padding-bottom: 60px;
 }
 
 .t2 {
@@ -236,6 +237,7 @@ p {
     margin-bottom: 50px;
     width: 700px;
     margin-top: 30px;
+    padding-bottom: 60px;
 }
 
 
