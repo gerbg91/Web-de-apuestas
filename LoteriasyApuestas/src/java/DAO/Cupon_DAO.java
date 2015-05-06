@@ -6,7 +6,6 @@
 package DAO;
 
 import Entidades.Cupon;
-import Entidades.Navidad;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,17 +29,22 @@ public class Cupon_DAO {
      */
     public ArrayList<Cupon> comprobarNumero(Connection con, String fecha) throws Exception {
         ArrayList<Cupon> _listaNumeros = new ArrayList();
+        String a[]={"CincoCifras","CincoCifrasAnterior","CincoCifrasPosterior","CuatroCifras","TresCifras","DosCifras","UltimaCifra","PrimeraCifra","Serie"};
         ResultSet rs = null;
         PreparedStatement stmt = null;
         try {
-            stmt = con.prepareStatement("SELECT * FROM cupon where historico=? and (nombre=\"CincoCifras\" or nombre=\"CincoCifrasAnterior\" or nombre=\"CincoCifrasPosterior\" or nombre=\"CuatroCifras\" or nombre=\"TresCifras\" or nombre=\"DosCifras\" or nombre=\"UltimaCifra\" or nombre=\"PrimeraCifra\" or nombre=\"Serie\")");
-            stmt.setString(1, fecha);
+            for (int e=0;e<=a.length-1;e++){
+            stmt = con.prepareStatement("SELECT * FROM cupon where nombre=? and  historico=?");
+            stmt.setString(1, a[e]);
+            stmt.setString(2, fecha);
             rs = stmt.executeQuery();
             Cupon _numeros;
             while (rs.next()) {
                 _numeros = new Cupon();
                 _listaNumeros.add(obtenNumeros(rs, _numeros));
             }
+            }
+             
         } catch (SQLException ex) {
             throw new Exception("Ha habido un problema al buscar los numeros en la BD " + ex.getMessage());
         } finally {
@@ -51,7 +55,7 @@ public class Cupon_DAO {
                 stmt.close();
             }
         }
-        return _listaNumeros;
+       return _listaNumeros;
     }
 
     /**
@@ -174,7 +178,7 @@ public class Cupon_DAO {
         ResultSet rs = null;
         PreparedStatement stmt = null;
         try {
-            stmt = _con.prepareStatement("select * from cupon where nombre=\"CincoCifras\" or nombre=\"CuatroCifras\" or nombre=\"TresCifras\" or nombre=\"DosCifras\" or nombre=\"UltimaCifra\" or nombre=\"Serie\" order by historico desc, premios desc, numero;");
+            stmt = _con.prepareStatement("select * from cupon where nombre=\"CincoCifras\" or nombre=\"CincoCifrasAnterior\" or nombre=\"CincoPosterior\" or nombre=\"CuatroCifras\" or nombre=\"TresCifras\" or nombre=\"DosCifras\" or nombre=\"UltimaCifra\" or nombre=\"PrimeraCifra\" or nombre=\"Serie\" order by historico desc, premios desc, numero;");
             rs = stmt.executeQuery();
             Cupon _numeros = null;
             while (rs.next()) {

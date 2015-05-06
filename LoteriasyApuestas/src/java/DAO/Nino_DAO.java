@@ -30,50 +30,16 @@ public class Nino_DAO {
      */
     @SuppressWarnings("null")
     public ArrayList<Nino> comprobarNumero(Connection con, String fecha, String numero) throws Exception {
-         ArrayList<Nino> _listaNumeros = new ArrayList();
+        ArrayList<Nino> _listaNumeros = new ArrayList();
         ResultSet rs = null;
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement("SELECT * FROM nino where numero=? and historico=?");
             stmt.setString(1, numero);
-            stmt.setString(2,fecha);
+            stmt.setString(2, fecha);
             rs = stmt.executeQuery();
             Nino _numeros = null;
             Nino numeroPremiado = new Nino();
-            while (rs.next()) {
-                 _numeros = new Nino();
-                 _listaNumeros.add(obtenNumeros(rs, _numeros));
-            }
-        } catch (SQLException ex) {
-            throw new Exception("Ha habido un problema al buscar los numeros en la BD " + ex.getMessage());
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (stmt != null) {
-                stmt.close();
-            }
-        }
-        return _listaNumeros;
-    }
-    
-        /**
-     * Metodo que recupera lista de premios importantes 
-     *
-     * @param con
-     * @param fecha
-     * @return
-     * @throws Exception
-     */
-    public ArrayList<Nino> listaPremiosSecundarios(Connection con, String fecha) throws Exception {
-        ArrayList<Nino> _listaNumeros = new ArrayList();
-        ResultSet rs = null;
-        PreparedStatement stmt = null;
-        try {
-            stmt = con.prepareStatement("select * from nino where (nombre=\"TerminacionCuatroCifras\" or nombre=\"TerminacionTresCifras\" or nombre=\"TerminacionDosCifras\" or nombre=\"TerminacionUltimaCifra\" or nombre=\"PrimeraCifraPrimero\" or nombre=\"PrimeraCifraSegundo\") and historico=?");
-            stmt.setString(1,fecha);
-            rs = stmt.executeQuery();
-            Nino _numeros = null;
             while (rs.next()) {
                 _numeros = new Nino();
                 _listaNumeros.add(obtenNumeros(rs, _numeros));
@@ -90,8 +56,45 @@ public class Nino_DAO {
         }
         return _listaNumeros;
     }
-    
-    
+
+    /**
+     * Metodo que recupera lista de premios importantes
+     *
+     * @param con
+     * @param fecha
+     * @return
+     * @throws Exception
+     */
+    public ArrayList<Nino> listaPremiosSecundarios(Connection con, String fecha) throws Exception {
+        ArrayList<Nino> _listaNumeros = new ArrayList();
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+        try {
+            String a[] = {"TerminacionCuatroCifras", "SegundoPremioCentenas", "TerminacionTresCifras", "TerminacionDosCifras", "TerminacionUltimaCifra", "PrimeraCifraPrimero", "PrimeraCifraSegundo"};
+            stmt = con.prepareStatement("select * from nino where nombre=? and historico=?");
+            for (int e = 0; e <= a.length - 1; e++) {
+                stmt.setString(1, a[e]);
+                stmt.setString(2, fecha);
+                rs = stmt.executeQuery();
+                Nino _numeros = null;
+                while (rs.next()) {
+                    _numeros = new Nino();
+                    _listaNumeros.add(obtenNumeros(rs, _numeros));
+                }
+            }
+        } catch (SQLException ex) {
+            throw new Exception("Ha habido un problema al buscar los numeros en la BD " + ex.getMessage());
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+        return _listaNumeros;
+    }
+
     /**
      * Metodo que setea las propiedades de los numeros
      *
@@ -108,26 +111,26 @@ public class Nino_DAO {
         numeros.setPremios(rs.getFloat("premios"));
         return numeros;
     }
-    
-     /**
+
+    /**
      * Metodo que inserta en la base de datos
-     * 
+     *
      * @param _con
      * @param numero
      * @param cantidadPremio
      * @param fecha
      * @param TipoPremio
-     * @throws Exception 
+     * @throws Exception
      */
-    public void insertarNumero(Connection _con, String numero, float cantidadPremio, String fecha, String TipoPremio) throws Exception {  
+    public void insertarNumero(Connection _con, String numero, float cantidadPremio, String fecha, String TipoPremio) throws Exception {
         ResultSet rs = null;
         PreparedStatement stmt = null;
         try {
             stmt = _con.prepareStatement("INSERT INTO nino (numero,nombre, historico ,premios) VALUES (?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1,numero);
-            stmt.setString(2,TipoPremio);
-            stmt.setString(3,fecha);
-            stmt.setFloat(4,cantidadPremio);
+            stmt.setString(1, numero);
+            stmt.setString(2, TipoPremio);
+            stmt.setString(3, fecha);
+            stmt.setFloat(4, cantidadPremio);
             stmt.executeUpdate();
         } catch (SQLException ex) {
             throw new Exception("Ha habido un problema al insertar los numeros en la BD " + ex.getMessage());
@@ -140,7 +143,7 @@ public class Nino_DAO {
             }
         }
     }
-    
+
     /**
      *Metodo que elimina de la base de datos
      * 

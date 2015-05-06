@@ -70,13 +70,17 @@ public class Navidad_DAO {
         ResultSet rs = null;
         PreparedStatement stmt = null;
         try {
-            stmt = con.prepareStatement("select * from navidad where (nombre=\"PrimerPremioCentenas\" or nombre=\"SegundoPremioCentenas\" or nombre=\"TercerPremioCentenas\" or nombre=\"CuartoPremioCentenas\" or nombre=\"PrimerPremioDecenas\" or nombre=\"SegundoPremioDecenas\" or nombre=\"TercerPremioDecenas\" or nombre=\"Reintegro\") and historico=?");
-            stmt.setString(1,fecha);
-            rs = stmt.executeQuery();
-            Navidad _numeros = null;
-            while (rs.next()) {
-                _numeros = new Navidad();
-                _listaNumeros.add(obtenNumeros(rs, _numeros));
+            String a[] = {"PrimerPremioCentenas", "SegundoPremioCentenas", "TercerPremioCentenas", "CuartoPremioCentenas", "PrimerPremioDecenas", "SegundoPremioDecenas", "TercerPremioDecenas", "Reintegro"};
+            for (int e = 0; e <= a.length - 1; e++) {
+                stmt = con.prepareStatement("select * from navidad where nombre=? and historico=?");
+                stmt.setString(1, a[e]);
+                stmt.setString(2, fecha);
+                rs = stmt.executeQuery();
+                Navidad _numeros = null;
+                while (rs.next()) {
+                    _numeros = new Navidad();
+                    _listaNumeros.add(obtenNumeros(rs, _numeros));
+                }
             }
         } catch (SQLException ex) {
             throw new Exception("Ha habido un problema al buscar los numeros en la BD " + ex.getMessage());
@@ -90,8 +94,8 @@ public class Navidad_DAO {
         }
         return _listaNumeros;
     }
-    
-    
+
+
     /**
      * Metodo que setea las propiedades de los numeros
      *

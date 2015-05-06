@@ -24,11 +24,13 @@ public class Connection_DB {
         Connection con;  
         try {
             Class.forName("com.mysql.jdbc.Driver");  // Cargar el driver
-            String urlOdbc = "jdbc:mysql://localhost:3306/loteriasDB";
+            String urlOdbc = "jdbc:mysql://localhost/loteriasdb";
             con = (java.sql.DriverManager.getConnection(urlOdbc, "root", "root"));  
             return con;
-        } catch (ClassNotFoundException | SQLException e) {
-            throw new Exception("Ha sido imposible establecer la conexion" + e.getMessage());
+        } catch (ClassNotFoundException e) {
+            throw new Exception("Ha sido imposible establecer la conexion " + e.getMessage());
+        } catch (SQLException e) {
+            throw new Exception("Ha sido imposible establecer la conexion " + e.getMessage());
         }
     }
 

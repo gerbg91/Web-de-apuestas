@@ -1,5 +1,6 @@
 <jsp:include page="menu.jsp" />
 <div class="anadir">
+    <b>Advertencia</b> Ingresar por orden de lista.
     <form action="Controller?opID=InsertarCupon" method="POST">
         <div class="izquierda">Número:</div>
         <div class="derecha"><input type="number" name="numeroDado" required = "required"/></div>
@@ -12,14 +13,14 @@
                 <option value="CuatroCifras">Cuatro ultimas cifras</option>
                 <option value="TresCifras">Tres ultimas cifras</option>
                 <option value="DosCifras">Dos ultimas cifras</option>
-                <option value="UltimaCifra">Ultima cifra del primer premio</option>
-                <option value="PrimeraCifra">Primera cifra del primer premio</option>
+                <option value="UltimaCifra">Ultima cifra</option>
+                <option value="PrimeraCifra">Primera cifra</option>
                 <option value="Serie">Serie</option>
             </select> 
         </div>
         <div class="izquierda">Fecha del sorteo</div>
         <div class="derecha"> <input type="text" name="ingreso" id="ingreso" required = "required" required = "required"/><img src="css/images/calendario.png" width="16" height="16" border="0" title="Fecha Inicial" id="lanzador"></div>
-        <div class="izquierda"> Premio por euro:</div>
+        <div class="izquierda"> Premio:</div>
         <div class="derecha"><input type="text" name="premios" required = "required"/></div>
         <div class="centro_boton"><input type="submit" value="Añadir"/></div>
     </form>

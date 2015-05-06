@@ -1,5 +1,6 @@
 <jsp:include page="menu.jsp" />
 <div class="anadir">
+    <b>Advertencia</b> Ingresar por orden de lista.
     <form action="Controller?opID=InsertarNavidad" method="POST">
         <div class="izquierda"> Número:</div>
         <div class="derecha"><input type="number" name="numeroDado" required = "required"/></div>

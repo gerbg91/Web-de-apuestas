@@ -30,7 +30,7 @@ public class CuponBLL {
     public float comprobarNumeroBLL(String numero, String numeroSerie, String fecha) {
 
         Connection _con;
-        ArrayList<Cupon> _numerosPremiados;
+        ArrayList<Cupon> _numerosPremiados = new ArrayList();
         float premioFinal = 0;
         try {
             Connection_DB _conexion_DB = new Connection_DB();
@@ -66,10 +66,10 @@ public class CuponBLL {
                     premioFinal = _numerosPremiados.get(4).getPremios();
                 } else if (_numerosPremiados.get(5).getNumero().equals(dosCifras)) {
                     premioFinal = _numerosPremiados.get(5).getPremios();
-                } else if (_numerosPremiados.get(6).getNumero().equals(ultimaCifra)) {
+                } else if (_numerosPremiados.get(5).getNumero().equals(ultimaCifra)) {
                     premioFinal = _numerosPremiados.get(6).getPremios();
-                } else if (_numerosPremiados.get(7).getNumero().equals(primeraCifra)) {
-                    premioFinal = _numerosPremiados.get(7).getPremios();
+                } else if (_numerosPremiados.get(6).getNumero().equals(primeraCifra)) {
+                    premioFinal = _numerosPremiados.get(6).getPremios();
                 }
             }
             _conexion_DB.CerrarConexion(_con);
