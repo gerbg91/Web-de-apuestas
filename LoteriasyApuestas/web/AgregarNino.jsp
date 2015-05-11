@@ -1,12 +1,13 @@
 <jsp:include page="menu.jsp" />
-<div class="anadir"> 
+<div class="anadir">
+    
     <b>Advertencia</b> Ingresar por orden de lista.
     <form action="Controller?opID=InsertarNino" method="POST">
         <div class="izquierda">Numero:</div>
         <div class="derecha"><input type="number" name="numeroDado" required = "required"/></div>
         <div class="izquierda">Nombre</div>
         <div class="derecha">
-        <select name="TipoLoteria">
+        <select name="TipoLoteria"> 
                      <option value="PrimerPremio">Primer Premio</option>
                     <option value="SegundoPremio">Segundo Premio</option>
                     <option value="TercerPremio">Tercer Premio</option>
