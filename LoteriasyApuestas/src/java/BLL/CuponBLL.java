@@ -51,8 +51,8 @@ public class CuponBLL {
             String primeraCifra = numeroVarchar.substring(0, 1);
 
             _numerosPremiados = _compruebaDAO.comprobarNumero(_con, fecha);
-            if (_numerosPremiados.get(0).getNumero().equals(numeroVarchar) & _numerosPremiados.get(7).getNumero().equals(numeroSerie)) {
-               premioFinal = _numerosPremiados.get(7).getPremios()+123456789;
+            if (_numerosPremiados.get(0).getNumero().equals(numeroVarchar) & _numerosPremiados.get(8).getNumero().equals(numeroSerie)) {
+               premioFinal = _numerosPremiados.get(8).getPremios()+123456789;
             } else {
                  if (_numerosPremiados.get(0).getNumero().equals(numeroVarchar)) {
                     premioFinal = _numerosPremiados.get(0).getPremios();
@@ -66,10 +66,10 @@ public class CuponBLL {
                     premioFinal = _numerosPremiados.get(4).getPremios();
                 } else if (_numerosPremiados.get(5).getNumero().equals(dosCifras)) {
                     premioFinal = _numerosPremiados.get(5).getPremios();
-                } else if (_numerosPremiados.get(5).getNumero().equals(ultimaCifra)) {
+                } else if (_numerosPremiados.get(6).getNumero().equals(ultimaCifra)) {
                     premioFinal = _numerosPremiados.get(6).getPremios();
-                } else if (_numerosPremiados.get(6).getNumero().equals(primeraCifra)) {
-                    premioFinal = _numerosPremiados.get(6).getPremios();
+                } else if (_numerosPremiados.get(7).getNumero().equals(primeraCifra)) {
+                    premioFinal = _numerosPremiados.get(7).getPremios();
                 }
             }
             _conexion_DB.CerrarConexion(_con);

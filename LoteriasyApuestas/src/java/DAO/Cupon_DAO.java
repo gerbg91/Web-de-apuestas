@@ -29,7 +29,7 @@ public class Cupon_DAO {
      */
     public ArrayList<Cupon> comprobarNumero(Connection con, String fecha) throws Exception {
         ArrayList<Cupon> _listaNumeros = new ArrayList();
-        String a[]={"CincoCifras","CincoCifrasAnterior","CincoCifrasPosterior","CuatroCifras","TresCifras","DosCifras","UltimaCifra","PrimeraCifra","Serie"};
+        String a[]={"CincoCifras","CincoCifrasAnterior","CincoPosterior","CuatroCifras","TresCifras","DosCifras","UltimaCifra","PrimeraCifra","Serie"};
         ResultSet rs = null;
         PreparedStatement stmt = null;
         try {
